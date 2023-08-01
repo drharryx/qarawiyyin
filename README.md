@@ -1,66 +1,32 @@
 # qarawiyyin
 La antigua biblioteca de Al-Qarawiyyin o Al-Karaouine (en árabe جامعة القرويين) en Fez es la más antigua de África. ... Al-Qarawiyyin incluye la universidad –la más antigua del mundo aunque reconocida como tal en 1947-, una mezquita y una serie de escuelas.
 
-Arq. Soluciones: Arq. Malla
+una comparativa detallada de Google Meet, Microsoft Teams y Zoom, podríamos considerar varios aspectos como: capacidad de usuarios, funciones de colaboración, integraciones, seguridad y planes de precios.
 
-const express = require('express');
-const CircuitBreaker = require('opossum');
-const { Kafka } = require('kafkajs');
+Capacidad de usuarios:
 
-// Crea la instancia de express
-const app = express();
+Google Meet: hasta 100 participantes en el plan gratuito, hasta 250 en el plan de pago.
+Microsoft Teams: hasta 100 participantes en el plan gratuito, hasta 10.000 en modo "solo vista" en el plan de pago.
+Zoom: hasta 100 participantes en el plan gratuito, hasta 1000 en el plan de pago.
+Funciones de colaboración:
 
-// Configura Kafka
-const kafka = new Kafka({
-  clientId: 'mi-aplicacion',
-  brokers: ['mi-broker.kafka.com:9092']
-});
+Google Meet: ofrece compartir pantalla, programar reuniones, subtítulos en tiempo real.
+Microsoft Teams: ofrece compartir pantalla, programar reuniones, chat en equipo, compartir archivos, integración con Office 365.
+Zoom: ofrece compartir pantalla, programar reuniones, chat en tiempo real durante las reuniones.
+Integraciones:
 
-// Configura el productor de Kafka
-const producer = kafka.producer();
+Google Meet: fuerte integración con G Suite (ahora Google Workspace), incluyendo Gmail, Google Calendar y Google Drive.
+Microsoft Teams: fuerte integración con Microsoft 365 (anteriormente Office 365), incluyendo Outlook, Word, Excel y PowerPoint.
+Zoom: ofrece integraciones con una variedad de aplicaciones como Outlook, Google Calendar, Slack, entre otros.
+Seguridad:
 
-// Función para hacer una llamada a un servicio externo
-const externalServiceCall = () => {
-  return new Promise((resolve, reject) => {
-    // Lógica para llamar al servicio
-    // Si todo va bien: resolve(data)
-    // Si algo sale mal: reject(error)
-  });
-};
+Google Meet: encriptación en tránsito, encriptación de archivos en Google Drive, cumplimiento de normativas como GDPR.
+Microsoft Teams: encriptación en tránsito y en reposo, cumplimiento de normativas como ISO 27001, GDPR.
+Zoom: encriptación en tránsito y en reposo, cumplimiento de normativas como GDPR, cuenta con protección de contraseña para reuniones.
+Planes de precios:
 
-// Configura el circuit breaker
-const options = {
-  timeout: 3000, // Si nuestra llamada tarda más de 3 segundos, activa el circuit breaker
-  errorThresholdPercentage: 50, // Si más del 50% de las solicitudes fallan, abre el circuito
-  resetTimeout: 30000 // Después de 30 segundos intenta cerrar el circuito
-};
+Google Meet: gratuito para todos los usuarios de Google. Los planes de pago comienzan desde $8 por usuario al mes en Google Workspace.
+Microsoft Teams: incluido en Microsoft 365, cuyos planes comienzan en $5 por usuario al mes.
+Zoom: tiene un plan gratuito. Los planes de pago comienzan desde $14.99 al mes por anfitrión.
+Por favor, ten en cuenta que las capacidades y los precios pueden variar, y se recomienda visitar los sitios web oficiales para obtener información actualizada.
 
-const breaker = new CircuitBreaker(externalServiceCall, options);
-
-// Maneja los eventos del circuit breaker
-breaker.on('fallback', async (result) => {
-  console.log('fallback', result);
-  // Envía un mensaje a Kafka cuando el circuit breaker se activa
-  await producer.send({
-    topic: 'topic-de-errores',
-    messages: [{ value: 'El circuit breaker se ha activado' }]
-  });
-});
-
-// Define tu ruta
-app.get('/ruta', async (req, res) => {
-  try {
-    const result = await breaker.fire();
-    res.json(result);
-  } catch (error) {
-    res.status(503).send('El servicio no está disponible en este momento');
-  }
-});
-
-// Inicia tu servidor
-app.listen(3000, () => {
-  console.log('El servidor está corriendo en el puerto 3000');
-});
-
-
-Deberás adaptarlo según tus necesidades. Por ejemplo, deberás reemplazar mi-broker.kafka.com:9092 por la dirección de tu broker de Kafka y mi-aplicacion por el nombre de tu aplicación.
