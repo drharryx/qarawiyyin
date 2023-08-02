@@ -1,32 +1,41 @@
 # qarawiyyin
 La antigua biblioteca de Al-Qarawiyyin o Al-Karaouine (en árabe جامعة القرويين) en Fez es la más antigua de África. ... Al-Qarawiyyin incluye la universidad –la más antigua del mundo aunque reconocida como tal en 1947-, una mezquita y una serie de escuelas.
 
-una comparativa detallada de Google Meet, Microsoft Teams y Zoom, podríamos considerar varios aspectos como: capacidad de usuarios, funciones de colaboración, integraciones, seguridad y planes de precios.
 
-Capacidad de usuarios:
+BIAN Market Info Management
 
-Google Meet: hasta 100 participantes en el plan gratuito, hasta 250 en el plan de pago.
-Microsoft Teams: hasta 100 participantes en el plan gratuito, hasta 10.000 en modo "solo vista" en el plan de pago.
-Zoom: hasta 100 participantes en el plan gratuito, hasta 1000 en el plan de pago.
-Funciones de colaboración:
+GPT-4
 
-Google Meet: ofrece compartir pantalla, programar reuniones, subtítulos en tiempo real.
-Microsoft Teams: ofrece compartir pantalla, programar reuniones, chat en equipo, compartir archivos, integración con Office 365.
-Zoom: ofrece compartir pantalla, programar reuniones, chat en tiempo real durante las reuniones.
-Integraciones:
+User
+Que ejemplo de uso me puedes dar para el market information management de bian
 
-Google Meet: fuerte integración con G Suite (ahora Google Workspace), incluyendo Gmail, Google Calendar y Google Drive.
-Microsoft Teams: fuerte integración con Microsoft 365 (anteriormente Office 365), incluyendo Outlook, Word, Excel y PowerPoint.
-Zoom: ofrece integraciones con una variedad de aplicaciones como Outlook, Google Calendar, Slack, entre otros.
-Seguridad:
+ChatGPT
+BIAN (Banking Industry Architecture Network) es un marco de referencia que busca estandarizar la arquitectura de los sistemas de información bancarios. Market Information Management, uno de los dominios de servicio en BIAN, se encarga de la gestión de la información de mercado, la cual puede incluir datos sobre las tasas de interés, valores de acciones, entre otros.
 
-Google Meet: encriptación en tránsito, encriptación de archivos en Google Drive, cumplimiento de normativas como GDPR.
-Microsoft Teams: encriptación en tránsito y en reposo, cumplimiento de normativas como ISO 27001, GDPR.
-Zoom: encriptación en tránsito y en reposo, cumplimiento de normativas como GDPR, cuenta con protección de contraseña para reuniones.
-Planes de precios:
+Un ejemplo de uso para el Market Information Management podría ser el siguiente:
 
-Google Meet: gratuito para todos los usuarios de Google. Los planes de pago comienzan desde $8 por usuario al mes en Google Workspace.
-Microsoft Teams: incluido en Microsoft 365, cuyos planes comienzan en $5 por usuario al mes.
-Zoom: tiene un plan gratuito. Los planes de pago comienzan desde $14.99 al mes por anfitrión.
-Por favor, ten en cuenta que las capacidades y los precios pueden variar, y se recomienda visitar los sitios web oficiales para obtener información actualizada.
+Supongamos que un banco está desarrollando una nueva aplicación móvil para sus clientes. Quieren proporcionar a sus usuarios la capacidad de ver las tasas de interés actuales de diferentes tipos de préstamos, valores de acciones, y tasas de cambio de divisas en tiempo real.
+
+Para esto, el banco necesita recolectar, gestionar y actualizar esta información de manera constante y eficiente. Aquí es donde entra en juego el servicio de Market Information Management de BIAN. Este servicio se encarga de recolectar datos de diferentes fuentes de información de mercado, gestionar la integridad y relevancia de estos datos, y actualizar la base de datos del banco de manera continua.
+
+Estos datos luego son utilizados por otras funciones del banco, como la función de gestión de préstamos, para calcular los intereses de los préstamos en función de las tasas de interés actuales. También se utilizan para proporcionar a los clientes información actualizada sobre las tasas de cambio de divisas y los valores de las acciones en la aplicación móvil.
+
+
+
+
+User
+Cuáles son las características clave de Market Information Management
+
+ChatGPT
+En el marco de referencia de BIAN, el dominio de servicio de Market Information Management se encarga de la recopilación, gestión y distribución de la información de mercado relevante para el banco. Aquí están algunas de las características clave de este dominio:
+
+Recolección de Datos: Market Information Management se encarga de recoger datos relevantes del mercado. Esto puede incluir tasas de interés, valores de acciones, tasas de cambio de divisas, precios de productos básicos, entre otros.
+
+Gestión de Datos: Una vez que los datos se recopilan, este servicio también se encarga de la gestión de estos datos. Esto implica validar la integridad y relevancia de los datos, eliminar duplicados, y mantener la coherencia de los datos.
+
+Actualización de Datos: El dominio también se encarga de actualizar la base de datos del banco de manera continua para reflejar los cambios en el mercado.
+
+Distribución de Datos: Finalmente, Market Information Management distribuye la información recopilada y gestionada a otras funciones del banco que la necesiten. Esto podría ser para la toma de decisiones, para calcular las tasas de interés de los préstamos, para proporcionar información a los clientes a través de aplicaciones móviles, etc.
+
+Integración y Estandarización: Como parte de BIAN, este dominio de servicio está diseñado para integrarse con otros dominios de servicio en la arquitectura de la red bancaria, lo que permite el intercambio eficiente de información. También contribuye a la estandarización de los procesos de recopilación, gestión y distribución de información de mercado en la industria bancaria.
 
