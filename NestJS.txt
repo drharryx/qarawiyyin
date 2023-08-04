@@ -1,0 +1,35 @@
+import { Injectable, HttpService } from '@nestjs/common';
+import axios, { AxiosResponse } from 'axios';
+
+@Injectable()
+export class DynamoService {
+    private readonly url: string;
+
+    constructor() {
+        this.url = 'https://dynamodb.us-west-2.amazonaws.com'; // Cambiar esto por tu endpoint de DynamoDB
+    }
+
+    async getItem(): Promise<any> {
+        const headers = {
+            'Content-Type': 'application/x-amz-json-1.0',
+            'X-Amz-Target': 'DynamoDB_20120810.GetItem',
+            'Authorization': 'tu-token-de-autorizacion', // Poporcionar un token de autorización válido
+        };
+        const data = {
+            "TableName": "nombre-de-tu-tabla",
+            "Key": {
+                "tu-llave-primaria": {
+                    "S": "valor-de-tu-llave"
+                }
+            }
+        };
+
+        try {
+            const response: AxiosResponse = await axios.post(this.url, data, { headers });
+            return response.data;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+}
