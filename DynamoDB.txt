@@ -1,0 +1,115 @@
+microservicio desplegado en Amazon Elastic Kubernetes Service (EKS) con una base de datos como Amazon DynamoDB, que es un servicio de base de datos como servicio (DaaS)!
+
+Para hacer esto, siga los siguientes pasos generales:
+
+Permiso IAM: Asegúrese de que el nodo o el rol del pod de EKS tenga permisos para acceder y realizar operaciones en DynamoDB. Esto se hace mediante políticas IAM. Si está utilizando IRSA (IAM Roles for Service Accounts) en EKS, puede asociar un rol de IAM con un ServiceAccount específico de Kubernetes.
+
+SDK AWS o Bibliotecas: Su aplicación o microservicio necesitará utilizar el SDK de AWS o alguna biblioteca que permita interactuar con DynamoDB. Si está desarrollando en un lenguaje popular como Python, JavaScript, Go, etc., AWS proporciona SDKs oficiales para facilitar esto.
+
+Configuración de Conexión: Al utilizar el SDK de AWS, normalmente no necesitará especificar puntos finales o credenciales explícitamente si su rol IAM ya tiene permisos. El SDK identificará automáticamente el rol del nodo o del pod y utilizará esos permisos. Sin embargo, asegúrese de especificar la región correcta.
+
+Desarrollo del Microservicio: Desarrolle su microservicio para que realice las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) y otras operaciones que necesite en DynamoDB.
+
+Despliegue en EKS: Una vez desarrollado, despliegue su microservicio en EKS. Asegúrese de que todos los recursos, como ConfigMaps, Secrets (si es necesario) y otros, estén correctamente configurados.
+
+Monitorización y Logging: Utilice servicios como Amazon CloudWatch para monitorear tanto su microservicio en EKS como su base de datos DynamoDB. Esto es esencial para comprender el rendimiento, identificar cuellos de botella y solucionar problemas.
+
+Optimización: Dependiendo de su carga de trabajo, querrá optimizar su acceso a DynamoDB. Esto puede implicar ajustar la capacidad de lectura/escritura, utilizar DynamoDB Accelerator (DAX) para cachear las lecturas, o diseñar adecuadamente sus esquemas y índices para minimizar costos y maximizar el rendimiento.
+
+En resumen, conectar un microservicio en EKS con DynamoDB no sólo es viable, sino que es una práctica común cuando se trabaja en la nube de AWS. Es importante seguir las mejores prácticas tanto de Kubernetes como de AWS para garantizar la seguridad, el rendimiento y la disponibilidad de su aplicación.
+
+
+1. Utilizando el SDK de AWS:
+Dependencias necesarias:
+npm install aws-sdk @nestjs/common
+
+A continuación, configure un módulo y un servicio para interactuar con DynamoDB:
+
+typescript:
+// dynamo.service.ts
+import { Injectable } from '@nestjs/common';
+import { DynamoDB } from 'aws-sdk';
+
+@Injectable()
+export class DynamoService {
+  private dynamoClient: DynamoDB.DocumentClient;
+
+  constructor() {
+    this.dynamoClient = new DynamoDB.DocumentClient({ region: 'us-west-2' }); // Cambie la región según corresponda
+  }
+
+  async getItem(tableName: string, key: any) {
+    const params = {
+      TableName: tableName,
+      Key: key,
+    };
+    return this.dynamoClient.get(params).promise();
+  }
+}
+
+
+
+
+SIN SDK:
+
+Sí, es viable conectar un microservicio en EKS con Amazon DynamoDB sin utilizar el SDK de AWS directamente. Aunque el SDK facilita muchas operaciones y gestiona automáticamente cosas como la firma de solicitudes, la reintentabilidad, etc., hay otras maneras de interactuar con DynamoDB.
+
+Aquí hay algunas alternativas:
+
+API HTTP de DynamoDB: DynamoDB expone una API RESTful que puede ser consumida directamente. Puedes hacer solicitudes HTTP a DynamoDB después de firmar correctamente la solicitud. El proceso de firma es un poco complicado, pero hay bibliotecas en varios lenguajes que pueden ayudarte con eso sin tener que usar el SDK completo.
+
+Data Pipeline o Servicio Intermedio: Puedes tener otro servicio (como un servicio basado en Lambda) que actúe como intermediario entre tu microservicio y DynamoDB. Este servicio intermedio podría utilizar el SDK de AWS y exponer endpoints más simplificados para tu microservicio en EKS.
+
+DynamoDB Accelerator (DAX): DAX es un servicio de caché en memoria totalmente gestionado que se coloca delante de DynamoDB y es compatible con el protocolo de Memcached. Si tus necesidades son principalmente de lectura y quieres evitar el SDK, DAX podría ser una opción, pero esta solución es más específica y no reemplaza completamente la necesidad de escribir en DynamoDB directamente.
+
+Otras Bibliotecas o Herramientas: Algunas bibliotecas o herramientas de terceros podrían ofrecer una interfaz para DynamoDB sin requerir el SDK completo de AWS. Sin embargo, ten en cuenta que muchas de estas bibliotecas todavía podrían utilizar el SDK debajo de los capós.
+
+Dicho esto, hay algunos retos a tener en cuenta:
+
+Firma de Solicitudes: Las solicitudes a DynamoDB deben estar firmadas según las especificaciones de AWS Signature Version 4. Esto puede ser complicado y es uno de los beneficios clave de usar el SDK.
+
+Gestión de Errores: El SDK de AWS maneja automáticamente muchos tipos de errores y hace reintentos según las políticas definidas. Si no usas el SDK, es posible que debas implementar tu propia lógica de manejo de errores y reintentos.
+
+Eficiencia: El SDK tiene muchas optimizaciones y características, como la gestión de conexiones, que puedes perder si haces llamadas directas.
+
+Por lo tanto, mientras es viable conectar un microservicio en EKS con DynamoDB sin el SDK de AWS, puede que no sea la solución más eficiente o fácil de implementar en comparación con simplemente utilizar el SDK.
+
+2. Sin utilizar el SDK de AWS:
+Para este ejemplo, vamos a usar Axios para hacer llamadas HTTP.
+
+Dependencias:
+npm install axios @nestjs/common
+
+typescript:
+// dynamo.service.ts
+import { Injectable } from '@nestjs/common';
+import axios from 'axios';
+
+@Injectable()
+export class DynamoService {
+  private dynamoEndpoint = 'https://dynamodb.us-west-2.amazonaws.com'; // Cambie la región según corresponda
+
+  async getItem(tableName: string, key: any) {
+    const headers = {
+      'Content-Type': 'application/x-amz-json-1.0',
+      'X-Amz-Target': 'DynamoDB_20120810.GetItem',
+      // ... Aquí debería agregar el proceso de firma AWS v4
+    };
+    
+    const body = {
+      TableName: tableName,
+      Key: key,
+    };
+
+    return axios.post(this.dynamoEndpoint, body, { headers });
+  }
+}
+
+
+
+NOTA: Sse omite la firma de la solicitud, que es esencial para autenticar y autorizar la solicitud. La firma de la solicitud es compleja y suele ser la razón principal para utilizar el SDK. No usar el SDK, considerar buscar una biblioteca que maneje específicamente la firma AWS v4 para sus solicitudes.
+
+
+
+
+
