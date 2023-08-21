@@ -1,0 +1,21 @@
+Tener en cuenta que aunque estés usando una imagen Docker alojada en ECR para tu función Lambda, eso no cambia cómo Lambda se comunica con S3.
+
+Puerto     Protocolo  Origen               Destino       Cifrado    Descripción
+------     ---------  ------               -------       -------    -----------
+443        HTTPS      AWS Lambda           S3            Sí         Acceso API a S3
+
+Detalles:
+
+Puerto: 443 - AWS utiliza HTTPS para todas las comunicaciones entre servicios, lo que significa que el tráfico está en el puerto 443.
+
+Protocolo: HTTPS - Es el protocolo estándar utilizado por AWS para comunicaciones seguras.
+
+Origen: AWS Lambda - Tu función Lambda es la fuente de la solicitud.
+
+Destino: S3 - El bucket S3 es el destino de la solicitud.
+
+Cifrado: Sí - Como se utiliza HTTPS, la comunicación es cifrada.
+
+Descripción: Acceso API a S3 - Las funciones Lambda interactúan con S3 a través de llamadas API (por ejemplo, PutObject, GetObject).
+
+No hay una conexión directa de "puerto a puerto" como podría haber entre dos servidores tradicionales, ya que es Cloud-FaaS
