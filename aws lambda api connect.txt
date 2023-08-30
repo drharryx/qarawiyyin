@@ -1,0 +1,92 @@
+Para activar una función Lambda de AWS utilizando un archivo .zip a través de IBM API Connect, sigue estos pasos:
+
+Crea tu función Lambda en AWS:
+Antes de poder activar tu función Lambda a través de API Connect, debes haber creado la función en la consola de AWS Lambda. Asegúrate de que la función esté configurada y funcione correctamente.
+
+Prepara tu archivo .zip:
+Empaqueta tu código fuente y cualquier dependencia en un archivo .zip. Asegúrate de que el archivo .zip tenga una estructura adecuada, incluyendo el archivo principal que AWS Lambda ejecutará.
+
+Accede a IBM API Connect:
+Inicia sesión en tu instancia de IBM API Connect.
+
+Crea un API:
+En API Connect, crea un nuevo API o selecciona uno existente al cual deseas agregar la activación de la función Lambda.
+
+Crea un Path y Método:
+Dentro del API, crea un nuevo Path (ruta) y un nuevo Método (por ejemplo, POST o GET) que representen la activación de tu función Lambda.
+
+Agrega una operación "Invoke Backend":
+Agrega una operación "Invoke Backend" en el Método que creaste. Esta operación será responsable de llamar a tu función Lambda en AWS.
+
+Configura la operación "Invoke Backend":
+En la configuración de la operación "Invoke Backend", deberás proporcionar la URL y los detalles de autenticación necesarios para conectarte con la función Lambda en AWS.
+
+URL: Debes proporcionar la URL de invocación de la función Lambda. Esta URL se puede encontrar en la consola de AWS Lambda.
+Método HTTP: Normalmente será POST o GET, según cómo hayas configurado tu función Lambda en AWS.
+Autenticación: Configura la autenticación según los requisitos de seguridad de tu función Lambda y API Gateway de AWS.
+Configura el cuerpo de la solicitud:
+Si tu función Lambda espera datos en el cuerpo de la solicitud, configura los parámetros y la estructura adecuada en la operación "Invoke Backend".
+
+Sube tu archivo .zip:
+En la configuración de la operación "Invoke Backend", busca la opción para subir un archivo .zip. Carga el archivo .zip que contiene tu código fuente y dependencias.
+
+Realiza pruebas:
+Utiliza las herramientas de prueba proporcionadas por API Connect para asegurarte de que la activación de la función Lambda funcione según lo esperado. Realiza pruebas de integración y verifica que los datos se transmitan correctamente entre API Connect y AWS Lambda.
+
+Publica el API:
+Una vez que hayas probado y verificado que la activación de la función Lambda funciona correctamente, publica tu API en el entorno deseado.
+
+Prueba en producción:
+Una vez que el API esté en producción, realiza pruebas adicionales para asegurarte de que la función Lambda se active correctamente en el entorno de producción.
+
+Activar una función Lambda de AWS utilizando un archivo .zip a través de IBM API Connect. Ten en cuenta que los detalles exactos pueden variar según las versiones específicas de las plataformas y las configuraciones individuales. Siempre consulta la documentación oficial de IBM API Connect y AWS Lambda para obtener instrucciones precisas y actualizadas.
+
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+Para activar una función Lambda de AWS utilizando un archivo .zip a través de IBM API Connect y contemplando el uso de un Application Load Balancer (ALB), sigue estos pasos:
+
+Crea tu función Lambda en AWS:
+Asegúrate de que tu función Lambda esté creada y funcione correctamente en la consola de AWS Lambda.
+
+Prepara tu archivo .zip:
+Empaqueta tu código fuente y las dependencias en un archivo .zip. Asegúrate de que el archivo .zip tenga una estructura adecuada, incluyendo el archivo principal que AWS Lambda ejecutará.
+
+Configura tu Application Load Balancer (ALB):
+Crea un ALB en la consola de AWS. Configura los listeners y los destinos para que apunten a la función Lambda que deseas activar.
+
+Obtén la URL del ALB:
+Obtén la URL del ALB. Esta será la dirección a la que API Connect enviará las solicitudes para activar la función Lambda.
+
+Accede a IBM API Connect:
+Inicia sesión en tu instancia de IBM API Connect.
+
+Crea un API:
+Crea un nuevo API o selecciona uno existente al cual deseas agregar la activación de la función Lambda.
+
+Crea un Path y Método:
+Dentro del API, crea un nuevo Path (ruta) y un nuevo Método (por ejemplo, POST o GET) que representen la activación de tu función Lambda.
+
+Agrega una operación "Invoke Backend":
+Agrega una operación "Invoke Backend" en el Método que creaste. Esta operación será responsable de llamar a tu función Lambda a través del ALB.
+
+Configura la operación "Invoke Backend":
+En la configuración de la operación "Invoke Backend", proporciona la URL del ALB que obtuviste en el paso 4.
+
+Configura el método HTTP y la autenticación:
+Configura el método HTTP (por ejemplo, POST o GET) que corresponda a tu función Lambda. Configura la autenticación según los requisitos de seguridad de tu función Lambda y del ALB.
+
+Configura el cuerpo de la solicitud:
+Si tu función Lambda espera datos en el cuerpo de la solicitud, configura los parámetros y la estructura adecuada en la operación "Invoke Backend".
+
+Sube tu archivo .zip:
+En la configuración de la operación "Invoke Backend", busca la opción para subir el archivo .zip que contiene tu código fuente y dependencias.
+
+Realiza pruebas:
+Utiliza las herramientas de prueba proporcionadas por API Connect para asegurarte de que la activación de la función Lambda funcione correctamente a través del ALB.
+
+Publica el API:
+Una vez que hayas probado y verificado que la activación de la función Lambda funciona según lo esperado, publica tu API en el entorno deseado.
+
+Prueba en producción:
+Realiza pruebas adicionales en el entorno de producción para asegurarte de que la activación de la función Lambda a través del ALB se realice de manera correcta.
