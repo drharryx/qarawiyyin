@@ -1,0 +1,12 @@
+Business Domain (Dominio de Negocio):
+
+Business Domain: "Foreign Exchange Operations Management"
+Service Domain (Dominio de Servicio):
+
+Service Domain: "Currency History Inquiry Portal"
+Dentro del Service Domain, los servicios específicos podrían llamarse:
+
+"Closed Today's Currency Operations Inquiry Service"
+"Currency Reports Generation Service"
+"Currency Transaction Notification Service"
+Estos nombres en inglés reflejan de manera más precisa los dominios de negocio y servicio en el contexto del BIAN Service Landscape para la gestión de operaciones de divisas y la consulta de historial de divisas.
