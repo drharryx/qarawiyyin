@@ -1,0 +1,100 @@
+
+ 
+
+Arquitectos:  
+
+Nombre de Arquitectos: Daivisel Martinez Franquis, Johan Gonzalez Suarez, Alvaro Varela Araque. 
+
+Fecha de entrega: 6 octubre 2023 
+
+ 
+
+​​Contenido 
+
+​1 Alcance 3 
+
+​2 Premisas 3 
+
+​3 Antecedentes de negocio 3 
+
+​4 Análisis de Arquitectura TI 3 
+
+​4.1 Diagrama de Arquitectura Alto Nivel 3 
+
+​4.2 Consideraciones sobre integraciones y componentes 3 
+
+​4.3 Consideraciones sobre aspectos de modelo y base de datos 3 
+
+​4.4 Consideraciones sobre aspectos de seguridad 4 
+
+​4.5 Consideraciones sobre aspectos de Infraestructura 4 
+
+​4.6 Consideraciones sobre aspectos de Arquitectura DevOps / DevSecOps 4 
+
+​5 Ponderación “Escala del 1 al 5” 4 
+
+​6 Conclusiones 4 
+
+​​ 
+
+ ____________________________________________________________________________________________________________________
+
+
+
+Alcance 
+
+o [Describir el alcance completo de la solución, así como, describir proveedores participantes y herramientas ofrecidas.] 
+
+Premisas 
+
+o [Describir puntos relevantes que deben ser considerados para la evaluación en sí.] 
+
+Antecedentes de negocio 
+
+o [Describir los antecedentes entregados por negocio relacionado a la funcionalidad a sustituir o que se desea adquirir.] 
+
+Análisis de Arquitectura TI 
+
+Diagrama de Arquitectura Alto Nivel 
+
+o [Diseño de diagrama Alto Nivel de la solución a evaluar.] 
+
+Consideraciones sobre integraciones y componentes 
+
+o [Describir decisiones críticas a considerar relacionadas integraciones de la solución.] 
+
+Consideraciones sobre aspectos de modelo y base de datos 
+
+o [Describir decisiones críticas a considerar relacionadas al modelo y base de datos de la solución.] 
+
+Consideraciones sobre aspectos de seguridad 
+
+o [Describir decisiones críticas a considerar relacionadas a la seguridad de la solución evaluada. Ejemplo: Autenticación, protocolos de comunicación (Internos y externos), protocolos para transferencias de archivos, etc.] 
+
+Consideraciones sobre aspectos de Infraestructura 
+
+o [Describir decisiones críticas a considerar relacionadas a la infraestructura de la solución evaluada. Ejemplo: protocolos para transferencias de archivos, etc.] 
+
+Consideraciones sobre aspectos de Arquitectura DevOps 
+
+• [Describir decisiones críticas a considerar relacionadas a Arquitectura DevOps / DevSecOps de la solución evaluada.] 
+
+ 
+
+Ponderación “Escala del 1 al 5” 
+
+Esta ponderación final está basada en el cuestionario respondido por el proveedor, así como, revisiones técnicas mediante demostraciones y presentaciones realizada por el mismo. 
+
+Criterio 
+
+Proveedor 
+
+Ponderación global técnica / Funcional 
+
+Técnico 
+
+ 
+
+Conclusiones  
+
+• Entregar conclusiones de todos los aspectos evaluados. 
