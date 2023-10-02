@@ -1,0 +1,167 @@
+﻿Tienes el rol de un arquitecto de soluciones senior, juntos vamos a redactar un informe de arquitectura para la evaluación y posterior adquisición de un proveedor para el desarrollo de un sistema de firma electrónica para el sector bancario, FES y FEA en Chile, con el siguiente formato 
+Alcance: [Describir el alcance completo de la solución, así como, describir proveedores participantes y herramientas ofrecidas.] 
+Premisas: [Describir puntos relevantes que deben ser considerados para la evaluación en sí.] 
+Antecedentes de negocio: [Describir los antecedentes entregados por negocio relacionado a la funcionalidad a sustituir o que se desea adquirir.] 
+Análisis de Arquitectura TI:
+Consideraciones sobre integraciones y componentes: [Describir decisiones críticas a considerar relacionadas integraciones de la solución.] 
+Consideraciones sobre aspectos de seguridad: [Describir decisiones críticas a considerar relacionadas a la seguridad de la solución evaluada. Ejemplo: Autenticación, protocolos de comunicación (Internos y externos), protocolos para transferencias de archivos, etc.] 
+Consideraciones sobre aspectos de Infraestructura: [Describir decisiones críticas a considerar relacionadas a la infraestructura de la solución evaluada. Ejemplo: protocolos para transferencias de archivos, etc.] 
+Consideraciones sobre aspectos de Arquitectura DevOps: [Describir decisiones críticas a considerar relacionadas a Arquitectura DevOps / DevSecOps de la solución evaluada.] 
+* Acá te dejo el primer bloque de contexto: ¿Qué es la firma electrónica?
+¿En qué consiste la firma electrónica? Este tipo de rúbrica se puede definir como un sistema para validar la identidad de la persona que ha emitido un documento electrónico. 
+Actualmente, hay firmas manuscritas – es decir, las de siempre, de puño y letra- y las más recientes, las firmas electrónicas.  Jurídicamente hablando, la firma electrónica es el equivalente digital-electrónico del concepto tradicional de firma manuscrita. 
+Quizás te sorprenda saber que este salto al mundo digital de la rúbrica personal no es algo nuevo. En realidad, en Chile, la modalidad de firmar electrónicamente está vigente como herramienta legal desde 2002. 
+Esto, a través del amparo de la firma electrónica ley. Mediante la Ley Nº 19.799, sobre Documentos Electrónicos, Firma Electrónica y Servicios de Certificación, los chilenos pueden hacer uso del sistema de rúbrica online con total confianza y protección legal.
+* Las leyes y normas chilenas permiten que personas naturales y personas jurídicas usen las firmas electrónicas para suscribir documentos sin usar papel, ni bolígrafos, ni sellos húmedos. De esto se trata la Firma Electrónica. Como ves, es una herramienta tecnológica ecológica y sostenible, que se adapta a los nuevos tiempos. Permite simplificar una larga lista de trámites, siendo reconocida en todo el planeta por las leyes internacionales, como un método práctico para firmar documentos en un clic.
+Ventajas de las firmas electrónicas
+La utilización de las firmas electrónicas simples o avanzadas depende de la naturaleza de los documentos a ser firmados, si requieren un valor probatorio o un mayor blindaje de seguridad. 
+Ten en cuenta que cuando firmas un documento en línea:
+Tu firma te representa y muestra tu voluntad y la aceptación de un determinado texto. 
+Permite que un proceso tan simple como estampar una rúbrica se pueda hacer en modo remoto, 100% online y sin otros recursos que los dispositivos digitales.
+De acuerdo con la tecnología usada, el objetivo clave de una firma virtual es que se pueda verificar sin problemas la identidad de la persona firmante.
+Para ello, es necesario que la firma electrónica cuente con datos cifrados dentro de un determinado mensaje electrónico. Para verificar esto se pueden usar sistemas de reconocimiento como las tarjetas de coordenadas, la biometría facial o las contraseñas OTP (que solo se usan una vez), por citar ejemplos. 
+Uso de la firma electrónica.
+* Los usos que podemos darle a las firmas electrónicas se encuentran la suscripción de este tipo de documentos:
+Contratos electrónicos con la banca.
+
+Firma Electrónica Simple (FES)
+Se le conoce por sus siglas FES. Es una rúbrica 100% online y básica que permite a la persona receptora de un documento electrónico, identificar al autor formal del envío. Se utiliza frecuentemente para hacer trámites simples, aceptar un servicio, otorgar poderes o autorizaciones a un familiar, amigo, asesor legal, etc. También es muy usada para asignar contratos por consenso, acusar recepción de algún documento o firmar acuerdos y contratos de distinta índole.
+Firma Electrónica Avanzada  (FEA)
+La Firma Electrónica Avanzada (FEA) se le reconoce como una forma segura y blindada de asignar documentos o varios instrumentos públicos y privados.  Esto se hace mediante una firma que ha sido validada previamente por un prestador de servicios acreditado.
+En Chile, el visto bueno es otorgado por el Ministerio de Economía a empresas que ofrecen el servicio de firma electrónica avanzada. Cualquier persona o empresa puede tener firmas simples o avanzadas y contratar este servicio cómodamente.
+Las firmas electrónicas se pueden usar hasta por 3 años, dependiendo de por cuánto tiempo se contrate el servicio. Después de este tiempo, se puede renovar o no.    
+Características de la firma electrónica avanzada
+La firma electrónica avanzada chilena es una firma certificada y validada por una empresa prestadora de este servicio. Si quieres obtener la firma electrónica avanzada debes pedirla a cualquiera de las empresas acreditadas en Chile. 
+
+
+¿Qué datos muestra la certificación de firma avanzada? 
+Contiene los datos personales del propietario de la firma, entre ellos, nombre completo y RUT. 
+Esta información personal es validada por el prestador del servicio de rúbrica online avanzada, acreditado por el Ministerio de Economía.
+Requisitos de una firma electrónica avanzada:
+Para que una firma avanzada sea reconocida como tal, debe cumplir con estos requisitos:
+Estar vinculada con la persona firmante, de forma única e intransferible. 
+No puede traspasarse o ser utilizada por otro usuario.
+Se debe ofrecer una identificación certera del firmante y el origen del documento.
+Debe usar datos de confianza y es de control exclusivo de la persona firmante.
+Es necesario que esté conectada con los datos que se firmaron en el documento. De esta manera, se impide la posibilidad de que la información contenida sea modificada posteriormente.
+Debe ofrecer una seguridad total y de alto nivel para garantizar la integridad del contenido firmado y la detección de la identidad del o los firmantes.
+Como la firma electrónica avanzada Chile permite una confianza sin reservas, es muy útil para realizar trámites tan variados como:
+Abrir cuentas bancarias        
+¿Qué tan diferentes son las firmas simples y avanzadas?
+La firma electrónica avanzada es diferente a la firma electrónica simple y también a otro tipo de firma como lo es la rúbrica electrónica cualificada.
+La firma simple o FES busca facilitar la identificación de la persona que firma. Puede usar o no patrones específicos de identificación para elevar la seguridad del documento.
+La firma avanzada o FEA contiene patrones que permiten blindar la identidad del firmante y certificar la validez e integridad del documento.
+Cómo crear una firma digital confiable
+En Chile, las firmas electrónicas también son denominadas certificados digitales. La Cámara de Comercio de Santiago explica que las firmas simples y avanzadas son equivalentes a una cédula de identidad. 
+Esta cédula es la que permite a personas naturales y empresas autenticarse en Internet para firmar digitalmente documentos. Esto brinda seguridad y confidencialidad para las partes que realizan negocios y acuerdos sin conocerse personalmente.
+Para el rubro bancario resulta clave que las firmas simples y avanzadas aseguren que:
+* La información transmitida por estas vías está impedida de ser interceptada por personas ajenas.
+* Sólo puede ser vista por el destinatario.
+* No exista “repudio”. Esto quiere decir que evite dejar la puerta abierta para una evasión posterior de los compromisos adquiridos mediante la vía electrónica.
+¿Cómo se logran estos objetivos?
+Adquiriendo los servicios de FES y FEA.
+
+
+Primer resultado:
+
+**Informe de Arquitectura para la Adquisición de un Sistema de Firma Electrónica en el Sector Bancario en Chile**
+
+
+**Alcance:**
+El presente informe detalla el proceso de evaluación y adquisición de un proveedor para implementar un sistema de Firma Electrónica Simple (FES) y Firma Electrónica Avanzada (FEA) en el sector bancario de Chile. Se consideran distintos proveedores que ofrezcan dichas soluciones y herramientas que cumplan con las regulaciones vigentes y estándares del mercado.
+
+
+**Premisas:**
+- Cumplimiento con la Ley Nº 19.799, sobre Documentos Electrónicos, Firma Electrónica y Servicios de Certificación en Chile.
+- Escalabilidad de la solución para adaptarse al crecimiento del sector bancario.
+- Capacidad de integración con sistemas actuales del sector bancario.
+- Alto nivel de seguridad y confiabilidad en las transacciones.
+
+
+**Antecedentes de negocio:**
+El crecimiento del sector financiero y la necesidad de digitalización en Chile han llevado a una demanda creciente de herramientas digitales confiables, entre las cuales se encuentra la firma electrónica. Esta herramienta no sólo proporciona agilidad en los procesos, sino que también asegura la validez y seguridad jurídica de las transacciones electrónicas.
+
+
+**Análisis de Arquitectura TI:**
+
+
+*Consideraciones sobre integraciones y componentes:*
+- Interoperabilidad con sistemas legados y plataformas actuales del banco.
+- API abierta para facilitar la integración con diferentes servicios bancarios.
+- Capacidad de adaptarse a futuros cambios o actualizaciones tecnológicas.
+
+
+*Consideraciones sobre aspectos de seguridad:*
+- Implementación de protocolos de autenticación robustos y en línea con estándares internacionales.
+- Protocolos de comunicación internos y externos cifrados para garantizar la confidencialidad y la integridad de los datos.
+- Sistemas de monitoreo y detección de intrusos en tiempo real.
+- Cumplimiento de las normativas y regulaciones locales e internacionales sobre la gestión de datos personales.
+
+
+*Consideraciones sobre aspectos de Infraestructura:*
+- Infraestructura resiliente, con alta disponibilidad y capacidad de recuperación ante desastres.
+- Uso de protocolos seguros para transferencia de archivos y almacenamiento de data.
+- Opciones de implementación en la nube, on-premise o híbrido según las necesidades del banco.
+
+
+*Consideraciones sobre aspectos de Arquitectura DevOps:*
+- Adopción de prácticas de DevSecOps para garantizar la seguridad en cada etapa del ciclo de vida del software.
+- Automatización de pruebas y despliegues para facilitar la entrega continua.
+- Monitoreo constante del rendimiento y la salud del sistema para detectar y corregir problemas rápidamente.
+
+
+**Conclusión:**
+Dada la relevancia y necesidad de contar con un sistema de firma electrónica confiable en el sector bancario chileno, es esencial seleccionar un proveedor que no solo cumpla con las regulaciones vigentes sino que ofrezca una solución escalable, segura y fácilmente integrable con la infraestructura actual del banco. La adopción de FES y FEA permitirá al banco optimizar sus operaciones, ofrecer una mejor experiencia al cliente y garantizar la seguridad y validez de sus transacciones electrónicas.
+
+
+Segundo resultado:
+**Análisis de Arquitectura TI 100% Cloud para un Sistema de Firma Electrónica en el Sector Bancario en Chile**
+
+
+La adopción de una arquitectura TI 100% en la nube para sistemas de firma electrónica ofrece ventajas en flexibilidad, escalabilidad y costos operativos. Sin embargo, también presenta sus propios desafíos y consideraciones. Vamos a desglosar este análisis enfocado en una implementación completamente en la nube:
+
+
+1. **Selección de Proveedor Cloud:**
+    - **Proveedores Líderes:** Empresas como AWS, Google Cloud Platform y Microsoft Azure ofrecen servicios avanzados y una amplia gama de soluciones. La elección dependerá de factores como costos, servicios ofrecidos y requisitos de cumplimiento específicos para el sector bancario chileno.
+    - **Ubicación de los Centros de Datos:** Es importante considerar la ubicación geográfica de los data centers, ya que la latencia y las regulaciones de privacidad pueden influir en la experiencia del usuario y en la conformidad legal.
+
+
+2. **Diseño de la Arquitectura:**
+    - **Modelo de Servicio:** Se pueden adoptar modelos como IaaS, PaaS o SaaS, dependiendo del nivel de control y personalización requerido.
+    - **Microservicios:** Esta arquitectura modular permite desarrollar, desplegar y escalar cada componente del sistema de forma independiente, ofreciendo mayor flexibilidad y resilencia.
+    - **Balanceo de Carga:** Esencial para distribuir el tráfico y garantizar una respuesta eficiente ante picos de demanda.
+
+
+3. **Almacenamiento y Bases de Datos:**
+    - **Soluciones de Bases de Datos como Servicio (DBaaS):** Facilitan la gestión, escalado y respaldo de las bases de datos.
+    - **Almacenamiento de Objetos:** Soluciones como S3 de AWS o Blob Storage de Azure son ideales para guardar documentos firmados y certificados.
+
+
+4. **Seguridad:**
+    - **Gestión de Identidades y Accesos (IAM):** Fundamental para controlar quién tiene acceso a qué recursos.
+    - **Red Privada Virtual (VPC):** Permite crear una red aislada dentro de la nube, añadiendo una capa extra de seguridad.
+    - **Cifrado:** Es imperativo cifrar datos en tránsito y en reposo. Los proveedores cloud suelen ofrecer soluciones de cifrado robustas.
+    - **Certificaciones:** Elegir proveedores con certificaciones relevantes (como ISO 27001) puede ser crucial para garantizar el cumplimiento de normativas del sector bancario.
+
+
+5. **Resiliencia y Continuidad del Negocio:**
+    - **Zonas de Disponibilidad y Regiones:** Usar múltiples zonas y/o regiones garantiza alta disponibilidad y protección contra fallos en una zona específica.
+    - **Estrategias de Respaldo y Recuperación:** Los servicios cloud ofrecen soluciones para respaldos automáticos y estrategias de recuperación ante desastres.
+
+
+6. **Monitorización y Gestión:**
+    - **Servicios de Monitorización Integrados:** Como CloudWatch en AWS o Azure Monitor, permiten seguimiento en tiempo real del desempeño y salud del sistema.
+    - **Automatización:** Herramientas como AWS Lambda o Azure Functions pueden automatizar tareas y respuestas a eventos específicos.
+
+
+7. **Aspectos Financieros y de Costo:**
+    - **Modelo de Pago-por-Uso:** Permite ajustar costos según demanda, pero requiere una monitorización constante para evitar gastos inesperados.
+    - **Optimización de Costos:** Utilizar herramientas y prácticas recomendadas para asegurar un uso eficiente de los recursos y evitar costos innecesarios.
+
+
+8. **Despliegue y CI/CD:**
+    - **Infraestructura como Código (IaC):** Herramientas como Terraform o CloudFormation permiten automatizar y replicar la infraestructura de forma consistente.
+    - **Pipelines de Integración y Despliegue Continuo:** Automatizan pruebas y despliegues, garantizando calidad y rapidez en la entrega de cambios.
+
+
+En resumen, una arquitectura TI 100% cloud para un sistema de firma electrónica en el sector bancario en Chile promete flexibilidad, escalabilidad y eficiencia. Sin embargo, es crucial planificar cuidadosamente y adoptar las mejores prácticas para garantizar seguridad, cumplimiento y control de costos.
