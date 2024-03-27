@@ -1,0 +1,21 @@
+El documento "Omdia Market Radar: AI-Assisted Software Development 2023–24" elaborado por Michael Azoff, analista principal en Cloud Native Computing, ofrece un exhaustivo análisis sobre el desarrollo de software asistido por IA (Inteligencia Artificial) a raíz de la creciente adopción de la inteligencia artificial generativa (GenAI) y los grandes modelos de lenguaje (LLMs) desde el lanzamiento de ChatGPT en noviembre de 2022. Este informe profundiza en cómo estas tecnologías están revolucionando el campo del desarrollo de software, proporcionando herramientas de asistencia para la generación de código, programación en pareja, pruebas, depuración, inspección de seguridad, y control de calidad.
+
+**Catalizadores y Visión de Omdia:**
+El mercado ha mostrado un interés exponencial en los LLMs, reflejando la mejora significativa en la calidad de las interfaces humano-máquina y la pericia que estos modelos ofrecen. Herramientas como GitHub Copilot, lanzada en octubre de 2021 y basada en Codex (GPT-3 de OpenAI), han pavimentado el camino para la aplicación de IA en la codificación. Este documento evalúa la evolución de las herramientas de codificación asistidas por IA, destacando una tendencia hacia capacidades mejoradas y mayor precisión, basada en revisiones de investigaciones académicas y análisis de productos líderes en el mercado.
+
+**Mensajes Clave:**
+- El desarrollo de software asistido por IA constituye un mercado en rápida evolución, con la participación tanto de startups como de proveedores de tecnología establecidos.
+- La tecnología de OpenAI ha impulsado significativamente este mercado.
+- Los jugadores del mercado tienden a ser agnósticos respecto al LLM fundamental que utilizan, seleccionando los mejores modelos para tareas específicas.
+- Las asistencias basadas en IA pueden abarcar todo el ciclo de vida del desarrollo de software (SDLC).
+
+**Recomendaciones:**
+Para las empresas, se aconseja evaluar cuidadosamente la salida de los modelos LLM como GPT-4 y ChatGPT, sin asumir que el código generado siempre es correcto. Omdia sugiere utilizar herramientas del mercado que ya incluyen capas de seguridad y mejora, y considerar aquellas que permiten incorporar corpus privados para aumentar la relevancia del desarrollo propio.
+
+Para los proveedores, el informe indica que todos los principales proveedores de la nube ahora ofrecen alguna forma de desarrollo de código asistido por IA. Los diferenciadores clave incluyen la adherencia a las reglas de licencia de datos de entrenamiento, la calidad y precisión de la salida generada, y la prevención de la generación de código inseguro.
+
+**Análisis de Mercado:**
+El documento repasa los eventos clave que han llevado a la actual ola de LLMs, la importancia de la precisión, el cumplimiento y la seguridad en el uso de LLMs, y presenta un análisis de productos de diversos proveedores, incluyendo GitLab Duo, enfatizando su enfoque en la privacidad del usuario y la transparencia operativa.
+
+**Conclusión:**
+"Omdia Market Radar: AI-Assisted Software Development 2023–24" concluye que el desarrollo de software asistido por IA se ha convertido en una parte integral del paisaje tecnológico, con el potencial de mejorar significativamente la productividad de los desarrolladores y la calidad del software. Las empresas que no adopten esta tecnología corren el riesgo de quedarse atrás.
