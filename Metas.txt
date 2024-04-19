@@ -89,3 +89,4 @@ Integración con el Módulo de Recuperación: Asegurar que el generador pueda re
 Personalización y Ajuste: Implementar mecanismos para ajustar y personalizar la salida del generador en función de las necesidades específicas del proyecto, como la inclusión de términos específicos del dominio o la adherencia a ciertos formatos o estructuras.
 En resumen, el módulo de recuperación se encarga de encontrar la información relevante que se utilizará como base para la generación, mientras que el generador se encarga de crear la salida final utilizando esa información. Ambos componentes deben diseñarse y configurarse cuidadosamente para asegurar que el modelo de RAG funcione de manera eficiente y efectiva en el contexto de tu proyecto.
 
+https://www-mckinsey-com.translate.goog/capabilities/mckinsey-digital/our-insights/breaking-through-data-architecture-gridlock-to-scale-ai?_x_tr_sl=auto&_x_tr_tl=es&_x_tr_hl=es-419&_x_tr_hist=true
