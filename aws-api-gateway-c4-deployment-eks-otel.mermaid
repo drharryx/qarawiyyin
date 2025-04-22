@@ -1,0 +1,110 @@
+flowchart TD
+    %% Contexto - Nivel 1
+    subgraph "C1: Sistema API Lightweight"
+        Cliente[("Cliente API\n[Persona/Sistema]\nConsume servicios a través de API")] --> APIGW
+        
+        subgraph "AWS Cloud"
+            APIGW["AWS API Gateway\n[Contenedor]\nPuerta de entrada para todas las solicitudes API,\ngestiona tráfico, autenticación y políticas"]
+            
+            %% Contenedores - Nivel 2
+            subgraph "C2: Seguridad y Autenticación"
+                WAF["AWS WAF\n[Componente]\nProtege APIs contra\nataques comunes web"]
+                COGNITO["Amazon Cognito\n[Componente]\nGestión de identidad\ny acceso de usuarios"]
+                
+                APIGW --> WAF
+                APIGW --> COGNITO
+            end
+            
+            subgraph "C2: Backend Services"
+                %% Componentes - Nivel 3
+                LAMBDA["AWS Lambda\n[Componente]\nFunciones serverless para\nprocesamiento ligero y bajo acoplamiento"]
+                EKS["Amazon EKS\n[Componente]\nOrquestación de contenedores\npara todos los microservicios"]
+                
+                APIGW --> LAMBDA
+                APIGW --> EKS
+                
+                subgraph "C3: Kubernetes Workloads"
+                    PODS["Pods/Deployments\n[Código]\nUnidades de despliegue\nde microservicios"]
+                    SERVICES["Kubernetes Services\n[Código]\nDescubrimiento y balanceo\nde carga interno"]
+                    INGRESS["Ingress Controller\n[Código]\nEnrutamiento de tráfico\ninterno en el cluster"]
+                    
+                    EKS --> PODS
+                    EKS --> SERVICES
+                    EKS --> INGRESS
+                end
+            end
+            
+            subgraph "C2: Almacenamiento y Datos"
+                %% Componentes - Nivel 3
+                DYNAMO["DynamoDB\n[Componente]\nBD NoSQL para\ndatos de alta velocidad"]
+                RDS["Amazon RDS\n[Componente]\nBD relacional para\ndatos estructurados"]
+                S3["Amazon S3\n[Componente]\nAlmacenamiento de objetos\npara documentos, archivos y assets"]
+                
+                LAMBDA --> DYNAMO
+                EKS --> RDS
+                EKS --> S3
+                LAMBDA --> S3
+            end
+            
+            subgraph "C2: Monitoreo y Observabilidad"
+                %% Componentes OpenTelemetry - Nivel 3
+                OTEL["OpenTelemetry\n[Componente]\nFramework unificado para\ntelemetría y observabilidad"]
+                OTEL_COL["OTel Collector\n[Componente]\nRecolector y procesador\nde telemetría"]
+                XRAY["AWS X-Ray\n[Componente]\nTrazabilidad distribuida\npara análisis de rendimiento"]
+                CW["CloudWatch\n[Componente]\nMonitoreo y métricas\ncentralizadas"]
+                ALARM["CloudWatch Alarms\n[Componente]\nAlertas basadas en\numbrales de métricas"]
+                SNS["SNS Notifications\n[Componente]\nNotificaciones de eventos\na equipos técnicos"]
+                DASHBOARD["CloudWatch Dashboards\n[Componente]\nVisualización de métricas\ny estado del sistema"]
+                
+                %% Conexiones OTEL
+                APIGW --> OTEL
+                LAMBDA --> OTEL
+                EKS --> OTEL
+                PODS --> OTEL
+                
+                OTEL --> OTEL_COL
+                OTEL_COL --> XRAY
+                OTEL_COL --> CW
+                
+                CW --> ALARM
+                ALARM --> SNS
+                CW --> DASHBOARD
+            end
+            
+            subgraph "C2: Gobernanza API"
+                %% Componentes - Nivel 3
+                API_CATALOG["API Catalog\n[Componente]\nRegistro centralizado de APIs\ny documentación"]
+                THROTTLE["Throttling & Cuotas\n[Componente]\nLímites de tasa para\nproteger backends"]
+                USAGE_PLAN["Usage Plans\n[Componente]\nPlanes por cliente\ny niveles de servicio"]
+                
+                APIGW --> API_CATALOG
+                APIGW --> THROTTLE
+                APIGW --> USAGE_PLAN
+            end
+        end
+    end
+    
+    %% Proceso CI/CD - Nivel 2/3
+    subgraph "C2: Proceso CI/CD"
+        DEV[("Desarrolladores\n[Persona]\nCrean código y\ndefiniciones de API")]
+        REPO["GitLab Repositories\n[Componente]\nAlmacenamiento de código,\nIaC y configuraciones"]
+        GL_CI["GitLab CI/CD Pipeline\n[Contenedor]\nAutomatización de\ntodo el proceso de entrega"]
+        
+        %% Componentes - Nivel 3
+        BUILD["Build & Test\n[Componente]\nCompilación y pruebas\nautomatizadas"]
+        SCAN["GitLab Security Scan\n[Componente]\nAnálisis de seguridad\nde código e imágenes"]
+        IaC["Terraform/CloudFormation\n[Componente]\nInfraestructura como código\npara despliegue reproducible"]
+        DEPLOY["GitLab CD Deploy\n[Componente]\nDespliegue automatizado\na entornos AWS"]
+        
+        DEV --> REPO
+        REPO --> GL_CI
+        GL_CI --> BUILD
+        BUILD --> SCAN
+        SCAN --> IaC
+        IaC --> DEPLOY
+        DEPLOY --> APIGW
+        DEPLOY --> EKS
+        DEPLOY --> OTEL
+        
+        CW --> GITLAB_INT["GitLab Integrations\n[Componente]\nFeedback de producción\nal ciclo de desarrollo"]
+    end
