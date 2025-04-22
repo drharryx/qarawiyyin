@@ -1,0 +1,175 @@
+flowchart TD
+    %% Vista detallada de DevOps y CloudOps
+    subgraph "DevOps - Implementación CI/CD Detallada"
+        subgraph "C3: GitLab CI/CD Pipeline"
+            DEV_BRANCH["Feature Branches\n[Código]\nDesarrollo de funcionalidades\naisladas"]
+            MAIN_BRANCH["Main Branch\n[Código]\nCódigo principal listo\npara despliegue"]
+            MR["Merge Request\n[Proceso]\nRevisión de código\ny validación de calidad"]
+            
+            DEV_BRANCH --> MR
+            MR --> MAIN_BRANCH
+            
+            MAIN_BRANCH --> CI_YAML[".gitlab-ci.yml\n[Código]\nDefinición de etapas\ny trabajos del pipeline"]
+            
+            subgraph "C4: Etapas del Pipeline"
+                BUILD_STAGE["Build Stage\n[Proceso]\nCompilación de código\nGeneración de artefactos"]
+                TEST_STAGE["Test Stage\n[Proceso]\nPruebas unitarias, integración\ny funcionales"]
+                SECURITY_STAGE["Security Stage\n[Proceso]\nSAST, DAST, análisis de\ndependencias"]
+                DOCKER_STAGE["Docker Stage\n[Proceso]\nCreación y escaneo\nde imágenes de contenedores"]
+                HELM_STAGE["Helm Stage\n[Proceso]\nEmpaquetado de charts\ny validación"]
+                INFRA_STAGE["Infra Stage\n[Proceso]\nValidación y planificación\nde infraestructura como código"]
+                DEPLOY_STAGE["Deploy Stage\n[Proceso]\nDespliegue secuencial\npor ambientes"]
+                
+                CI_YAML --> BUILD_STAGE
+                BUILD_STAGE --> TEST_STAGE
+                TEST_STAGE --> SECURITY_STAGE
+                SECURITY_STAGE --> DOCKER_STAGE
+                DOCKER_STAGE --> HELM_STAGE
+                HELM_STAGE --> INFRA_STAGE
+                INFRA_STAGE --> DEPLOY_STAGE
+            end
+            
+            subgraph "C4: Artefactos Generados"
+                DOCKER_REPO["GitLab Container Registry\n[Almacenamiento]\nRepositorio de imágenes\nde contenedores"]
+                HELM_REPO["GitLab Helm Repository\n[Almacenamiento]\nRepositorio de charts\nde Kubernetes"]
+                TF_STATE["GitLab Terraform State\n[Almacenamiento]\nEstado de infraestructura\nremoto y seguro"]
+                
+                DOCKER_STAGE --> DOCKER_REPO
+                HELM_STAGE --> HELM_REPO
+                INFRA_STAGE --> TF_STATE
+            end
+        end
+    end
+    
+    subgraph "CloudOps - Implementación AWS Detallada"
+        subgraph "C3: Infraestructura como Código"
+            TF_MODULES["Módulos Terraform\n[Código]\nComponentes reutilizables\npara recursos AWS"]
+            
+            subgraph "C4: Terraform Resources"
+                TF_NETWORK["Networking Module\n[Código]\nVPC, Subnets, NACLs,\nRouting Tables, Transit Gateway"]
+                TF_EKS["EKS Module\n[Código]\nCluster, Node Groups,\nAdd-ons, IRSA"]
+                TF_API["API Gateway Module\n[Código]\nDefinición de API, etapas,\nautorización, modelos"]
+                TF_IAM["IAM Module\n[Código]\nRoles, políticas,\ngestión de permisos"]
+                TF_MONITORING["Monitoring Module\n[Código]\nCloudWatch, alarmas,\ndashboards"]
+                
+                TF_MODULES --> TF_NETWORK
+                TF_MODULES --> TF_EKS
+                TF_MODULES --> TF_API
+                TF_MODULES --> TF_IAM
+                TF_MODULES --> TF_MONITORING
+            end
+            
+            DEPLOY_STAGE --> TF_MODULES
+        end
+        
+        subgraph "C3: Kubernetes Resources"
+            subgraph "C4: Manifiestos Kubernetes"
+                K8S_NAMESPACES["Namespaces\n[Código]\nAislamiento lógico\nde aplicaciones"]
+                K8S_DEPLOYMENTS["Deployments\n[Código]\nConfiguración de pods\ny estrategias de actualización"]
+                K8S_SERVICES["Services\n[Código]\nExposición de aplicaciones\ny descubrimiento interno"]
+                K8S_CONFIG["ConfigMaps & Secrets\n[Código]\nConfiguración y credenciales\nde aplicaciones"]
+                K8S_HPA["HPA\n[Código]\nAutoescalado horizontal\nbasado en métricas"]
+                K8S_INGRESS["Ingress\n[Código]\nReglas de enrutamiento\npara tráfico HTTP/S"]
+                K8S_NETWORKPOLICY["Network Policies\n[Código]\nSeguridad de red\nentre pods"]
+                
+                HELM_REPO --> K8S_NAMESPACES
+                K8S_NAMESPACES --> K8S_DEPLOYMENTS
+                K8S_NAMESPACES --> K8S_SERVICES
+                K8S_NAMESPACES --> K8S_CONFIG
+                K8S_NAMESPACES --> K8S_HPA
+                K8S_NAMESPACES --> K8S_INGRESS
+                K8S_NAMESPACES --> K8S_NETWORKPOLICY
+            end
+            
+            subgraph "C4: Add-ons EKS"
+                ADDON_ALB["AWS Load Balancer Controller\n[Componente]\nProvisión y gestión de\nALB/NLB para Ingress"]
+                ADDON_AUTOSCALER["Cluster Autoscaler\n[Componente]\nEscalado automático de\nnodos del clúster"]
+                ADDON_OTEL["OpenTelemetry Operator\n[Componente]\nGestión de recolectores\ny exportadores de telemetría"]
+                ADDON_CSI["EBS/EFS CSI Drivers\n[Componente]\nProvisión dinámica\nde almacenamiento persistente"]
+                ADDON_EXTERNALDNS["ExternalDNS\n[Componente]\nSincronización automática\nde DNS con Route53"]
+                
+                TF_EKS --> ADDON_ALB
+                TF_EKS --> ADDON_AUTOSCALER
+                TF_EKS --> ADDON_OTEL
+                TF_EKS --> ADDON_CSI
+                TF_EKS --> ADDON_EXTERNALDNS
+                
+                ADDON_ALB --> K8S_INGRESS
+            end
+        end
+        
+        subgraph "C3: OpenTelemetry Detallado"
+            subgraph "C4: OTel Configuration"
+                OTEL_COLLECTOR_CONFIG["Collector Config\n[Código]\nPipelines de recepción,\nprocesamiento y exportación"]
+                OTEL_INSTRUMENTATION["Auto-Instrumentation\n[Código]\nSDKs y agentes para\nJava, Node.js, Python, Go"]
+                OTEL_SAMPLING["Sampling Rules\n[Código]\nReglas de muestreo para\noptimizar volumen de datos"]
+                OTEL_PROCESSORS["Attribute Processors\n[Código]\nTransformación y enriquecimiento\nde telemetría"]
+                
+                ADDON_OTEL --> OTEL_COLLECTOR_CONFIG
+                ADDON_OTEL --> OTEL_INSTRUMENTATION
+                ADDON_OTEL --> OTEL_SAMPLING
+                ADDON_OTEL --> OTEL_PROCESSORS
+            end
+            
+            subgraph "C4: OTel Exporters"
+                OTEL_XRAY["X-Ray Exporter\n[Componente]\nEnvío de trazas\nal formato AWS X-Ray"]
+                OTEL_CW["CloudWatch Exporter\n[Componente]\nEnvío de métricas y logs\na CloudWatch"]
+                OTEL_PROMETHEUS["Prometheus Exporter\n[Componente]\nExposición de métricas\nen formato Prometheus"]
+                
+                OTEL_COLLECTOR_CONFIG --> OTEL_XRAY
+                OTEL_COLLECTOR_CONFIG --> OTEL_CW
+                OTEL_COLLECTOR_CONFIG --> OTEL_PROMETHEUS
+            end
+        end
+        
+        subgraph "C3: API Gateway Configuration"
+            subgraph "C4: Definición de API"
+                APIGW_SWAGGER["OpenAPI/Swagger\n[Código]\nEspecificación formal\nde endpoints y modelos"]
+                APIGW_METHODS["API Methods\n[Código]\nConfiguración de verbos HTTP\ny mapeo de integración"]
+                APIGW_AUTHORIZERS["Authorizers\n[Código]\nMecanismos de autorización\nCognito, Lambda, JWT"]
+                APIGW_THROTTLING["Throttling Configuration\n[Código]\nLimites de tasa por método,\nAPI y cliente"]
+                APIGW_MODELS["Request/Response Models\n[Código]\nEsquemas JSON para\nvalidación de datos"]
+                
+                TF_API --> APIGW_SWAGGER
+                APIGW_SWAGGER --> APIGW_METHODS
+                APIGW_SWAGGER --> APIGW_AUTHORIZERS
+                APIGW_SWAGGER --> APIGW_THROTTLING
+                APIGW_SWAGGER --> APIGW_MODELS
+            end
+            
+            subgraph "C4: Integración API-EKS"
+                APIGW_VPC_LINK["VPC Link\n[Componente]\nConexión privada entre\nAPI Gateway y VPC"]
+                APIGW_NLB["Network Load Balancer\n[Componente]\nBalanceador para tráfico\ndesde VPC Link"]
+                
+                APIGW_METHODS --> APIGW_VPC_LINK
+                APIGW_VPC_LINK --> APIGW_NLB
+                APIGW_NLB --> K8S_SERVICES
+            end
+        end
+        
+        subgraph "C3: Seguridad Avanzada"
+            subgraph "C4: WAF Configuration"
+                WAF_RULES["WAF Rules\n[Código]\nReglas de protección\ncontra ataques comunes"]
+                WAF_IPSETS["IP Sets\n[Código]\nListas de IPs permitidas\no bloqueadas"]
+                WAF_RATELIMIT["Rate Limiting\n[Código]\nProtección contra\nataques de fuerza bruta"]
+                
+                TF_API --> WAF_RULES
+                WAF_RULES --> WAF_IPSETS
+                WAF_RULES --> WAF_RATELIMIT
+            end
+            
+            subgraph "C4: Seguridad de Datos"
+                KMS_KEYS["KMS Keys\n[Componente]\nClaves de cifrado\npara datos sensibles"]
+                SECRETS_MANAGER["Secrets Manager\n[Componente]\nGestión centralizada\nde credenciales"]
+                
+                TF_IAM --> KMS_KEYS
+                TF_IAM --> SECRETS_MANAGER
+                SECRETS_MANAGER --> K8S_CONFIG
+            end
+        end
+    end
+    
+    %% Integraciones entre DevOps y CloudOps
+    DEPLOY_STAGE --> K8S_DEPLOYMENTS
+    DEPLOY_STAGE --> APIGW_SWAGGER
+    TF_MONITORING --> OTEL_COLLECTOR_CONFIG
