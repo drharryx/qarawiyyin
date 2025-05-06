@@ -1,0 +1,43 @@
+flowchart TD
+    subgraph Desarrollador
+        A[Desarrollar API] --> B[Crear/Actualizar\nSwagger/OpenAPI Spec]
+        B --> C[Commit al\nRepositorio GitLab]
+    end
+    
+    subgraph GitLab CI/CD
+        D[Trigger Pipeline] --> E{Validación\nCódigo}
+        E -->|Pass| F[Build\nImagen Docker]
+        E -->|Fail| G[Notificar Error\nde Validación]
+        F --> H[Test Unitarios\ny de Integración]
+        H -->|Pass| I[Escaneo de\nSeguridad]
+        H -->|Fail| J[Notificar Error\nde Tests]
+        I -->|Pass| K[Push Imagen\na ECR]
+        I -->|Fail| L[Notificar\nVulnerabilidades]
+        K --> M[Generar Manifiestos\nKubernetes]
+    end
+    
+    subgraph AWS IaC
+        N[Terraform Plan\nAPI Gateway] --> O{Aprobación\nChanges}
+        O -->|Aprobado| P[Terraform Apply\nAPI Gateway]
+        O -->|Rechazado| Q[Notificar\nCancelación]
+        P --> R[Configurar Integración\nAPI Gateway-EKS]
+    end
+    
+    subgraph AWS EKS
+        S[Desplegar en\nCluster EKS] --> T[Configurar\nHPA/Service Mesh]
+        T --> U[Health Check\nEndpoints]
+        U -->|OK| V[Actualizar DNS\ny Load Balancer]
+        U -->|Error| W[Rollback\na Versión Anterior]
+    end
+    
+    subgraph Monitoreo
+        X[Configurar\nCloudWatch Alarmas] --> Y[Habilitar\nX-Ray Tracing]
+        Y --> Z[Configurar\nDashboards]
+        Z --> AA[Configurar Alertas\nde Incidentes]
+    end
+    
+    C --> D
+    M --> N
+    R --> S
+    V --> X
+    W --> J
