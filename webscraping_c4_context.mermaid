@@ -1,0 +1,103 @@
+graph TB
+    %% External Actors
+    DataAnalyst["👨‍💼 Analista de Datos<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🎯 **Usuario Principal**<br/>• Inicia campañas de web scraping<br/>• Define especificaciones de extracción<br/>• Monitorea progreso en tiempo real<br/>• Revisa métricas de calidad de datos<br/>• Configura automatización y programación<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**Interacciones:**<br/>→ Envía trabajos de scraping vía API<br/>→ Monitorea tableros de ejecución<br/>→ Descarga conjuntos de datos estructurados<br/>→ Configura políticas de reintentos"]
+
+    BusinessStakeholder["👩‍💼 Interesado de Negocio<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🏢 **Usuario Estratégico**<br/>• Solicita inteligencia competitiva<br/>• Define requisitos de datos del negocio<br/>• Revisa reportes de análisis de mercado<br/>• Aprueba políticas de cumplimiento<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**Interacciones:**<br/>→ Solicita insights de negocio<br/>→ Establece prioridades de recolección<br/>→ Revisa cumplimiento ético"]
+
+    %% Target Systems
+    TargetWebsites["🌐 Ecosistemas Web Objetivo<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🎯 **Fuentes de Datos Complejas**<br/>• **Aplicaciones SPA**: Sitios React, Vue, Angular<br/>• **Plataformas E-commerce**: Catálogos, precios<br/>• **Redes Sociales**: Contenido generado por usuarios<br/>• **Noticias y Medios**: Feeds de contenido en tiempo real<br/>• **Mercados Financieros**: Datos de trading, analíticas<br/>• **Portales Gubernamentales**: Registros públicos, regulaciones<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**Desafíos:**<br/>• Renderizado pesado con JavaScript<br/>• Flujos de autenticación<br/>• Protección CAPTCHA<br/>• Limitación de velocidad y bloqueo de IP<br/>• Carga dinámica de contenido"]
+
+    %% External Services
+    ProxyInfrastructure["🔐 Capa de Proxies y Seguridad<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🛡️ **Servicios de Anonimización**<br/>• **Proxies Residenciales**: Rotación de IP domésticas<br/>• **Proxies de Datacenter**: Extracción de alta velocidad<br/>• **Distribución Geográfica**: Pools de IP globales<br/>• **Persistencia de Sesión**: Gestión de cookies<br/>• **Resolución CAPTCHA**: 2captcha, Anti-Captcha<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**Beneficios:**<br/>→ Evita detección y bloqueos<br/>→ Supera restricciones geográficas<br/>→ Escala volumen de extracción<br/>→ Mantiene seguridad operacional"]
+
+    NotificationChannels["📧 Centro de Comunicaciones<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>📨 **Alertas Multi-Canal**<br/>• **Notificaciones Email**: Integración SES<br/>• **Integración Slack**: Colaboración en equipo<br/>• **Alertas SMS**: Notificaciones de fallos críticos<br/>• **Endpoints Webhook**: Integraciones de sistemas<br/>• **Alertas de Tablero**: Monitoreo en tiempo real<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**Tipos de Alertas:**<br/>→ Estado de finalización de trabajos<br/>→ Alertas de errores y excepciones<br/>→ Violaciones de umbrales de calidad<br/>→ Monitoreo de salud del sistema"]
+
+    %% Main System
+    subgraph "Plataforma Inteligente de Web Scraping"
+        direction TB
+        
+        OrchestratorAgent["🎯 ORQUESTADOR DE SCRAPING<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🧠 **Dominio: Coordinación de Flujos y Planificación**<br/>• **Descubrimiento A2A**: Registro dinámico de agentes<br/>• **Descomposición de Trabajos**: División de tareas complejas<br/>• **Asignación de Recursos**: Asignación inteligente de agentes<br/>• **Monitoreo de Ejecución**: Seguimiento de progreso en tiempo real<br/>• **Recuperación de Fallos**: Reintentos automáticos y escalamiento<br/>• **Balanceo de Carga**: Distribución de carga entre agentes<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**LLM:** Claude 3 Haiku (Toma de Decisiones Rápida)<br/>**Rol A2A:** Cliente Principal - coordina todos los agentes<br/>**Infraestructura:** Lambda (512MB), orquestación EventBridge<br/>**Datos:** DynamoDB (estado de trabajos), S3 (logs de ejecución)"]
+
+        ReconnaissanceAgent["🔍 RECONOCIMIENTO DE SITIOS<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🧠 **Dominio: Inteligencia Web y Análisis**<br/>• **Integración Playwright-MCP**: Perfilado inicial de sitios<br/>• **Detección de Stack Tecnológico**: Identificación de frameworks<br/>• **Mapeo de Flujos de Autenticación**: Análisis de secuencias de login<br/>• **Descubrimiento de Límites**: Detección de patrones de throttling<br/>• **Evaluación Anti-Bot**: Análisis de mecanismos de protección<br/>• **Arquitectura de Contenido**: Mapeo estático vs dinámico<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**LLM:** Claude 3 Sonnet (Análisis Técnico Profundo)<br/>**Rol A2A:** Servidor de Inteligencia - provee perfiles de sitios<br/>**Herramientas:** Playwright-MCP para reconocimiento<br/>**Infraestructura:** Lambda (1GB), timeout extendido<br/>**Datos:** DynamoDB (perfiles de sitios), S3 (reportes de análisis)"]
+
+        BrowserAgent["🤖 AUTOMATIZACIÓN DE NAVEGADOR<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🧠 **Dominio: Navegación Web Interactiva**<br/>• **Integración Browser-Use**: Control de navegador dirigido por IA<br/>• **Navegación Inteligente**: Manejo de flujos de usuario complejos<br/>• **Manejo de Contenido Dinámico**: Espera de renderizado JS<br/>• **Automatización de Formularios**: Llenado y envío inteligente<br/>• **Gestión de Autenticación**: Ejecución de secuencias de login<br/>• **Persistencia de Sesión**: Gestión de cookies y estado<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**LLM:** Claude 3.5 Sonnet (Razonamiento Avanzado)<br/>**Rol A2A:** Servidor de Ejecución - maneja tareas de navegador<br/>**Herramientas:** Browser-Use para navegación IA<br/>**Infraestructura:** Lambda (3GB), soporte para contenedores<br/>**Datos:** S3 (capturas de pantalla), DynamoDB (datos de sesión)"]
+
+        ExtractionAgent["📊 EXTRACCIÓN DE DATOS<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🧠 **Dominio: Procesamiento y Extracción de Contenido**<br/>• **Control Playwright-MCP**: Targeting preciso de elementos<br/>• **Selección Impulsada por IA**: Generación inteligente de selectores CSS<br/>• **Soporte Multi-Formato**: Texto, imágenes, documentos<br/>• **Minería de Datos Estructurados**: Parsing JSON-LD, microdata<br/>• **Deduplicación de Contenido**: Detección inteligente de duplicados<br/>• **Evaluación de Calidad**: Validación de completitud de contenido<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**LLM:** Claude 3 Sonnet (Reconocimiento de Patrones)<br/>**Rol A2A:** Servidor de Procesamiento - extrae datos estructurados<br/>**Herramientas:** Playwright-MCP para extracción precisa<br/>**Infraestructura:** Lambda (2GB), procesamiento de alta memoria<br/>**Datos:** S3 (contenido crudo), DynamoDB (metadata de extracción)"]
+
+        ValidationAgent["✅ ASEGURAMIENTO DE CALIDAD<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🧠 **Dominio: Calidad de Datos y Validación**<br/>• **Validación de Esquemas**: Verificación de cumplimiento de estructura<br/>• **Puntuación de Calidad**: Evaluación de completitud<br/>• **Validación de Reglas de Negocio**: Reglas específicas del dominio<br/>• **Detección de Anomalías**: Identificación de valores atípicos estadísticos<br/>• **Puntuación de Confianza**: Métricas de confiabilidad de extracción<br/>• **Enriquecimiento de Datos**: Inferencia de campos faltantes<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**LLM:** Claude 3 Haiku (Clasificación Rápida)<br/>**Rol A2A:** Servidor de Validación - asegura calidad de datos<br/>**Infraestructura:** Lambda (1GB), procesamiento por lotes<br/>**Datos:** DynamoDB (métricas de calidad), S3 (datasets validados)"]
+
+        TransformationAgent["🔄 TRANSFORMACIÓN DE DATOS<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🧠 **Dominio: Procesamiento de Datos y ETL**<br/>• **Estandarización de Formatos**: Salida JSON, CSV, Parquet<br/>• **Limpieza de Datos**: Eliminación de ruido y normalización<br/>• **Mapeo de Esquemas**: Transformación a formatos objetivo<br/>• **Agregación y Resumen**: Procesamiento estadístico<br/>• **Preparación de Exportación**: Generación de salida multi-formato<br/>• **Integración API**: Conectividad con sistemas de terceros<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**LLM:** Claude 3 Haiku (Procesamiento Eficiente)<br/>**Rol A2A:** Servidor de Transformación - procesa datos finales<br/>**Infraestructura:** Lambda (1.5GB), operaciones por lotes<br/>**Datos:** S3 (datasets procesados), DynamoDB (logs de transformación)"]
+
+        MonitoringAgent["📊 MONITOREO DEL SISTEMA<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>🧠 **Dominio: Observabilidad y Gestión de Salud**<br/>• **Monitoreo de Rendimiento**: Seguimiento de salud de agentes<br/>• **Análisis de Errores**: Identificación de patrones de fallo<br/>• **Optimización de Recursos**: Análisis de patrones de uso<br/>• **Mantenimiento Predictivo**: Detección proactiva de problemas<br/>• **Optimización de Costos**: Seguimiento de utilización de recursos<br/>• **Monitoreo SLA**: Cumplimiento de niveles de servicio<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**LLM:** Claude 3 Haiku (Análisis en Tiempo Real)<br/>**Rol A2A:** Servidor Observador - inteligencia del sistema<br/>**Infraestructura:** Lambda (512MB), integración CloudWatch<br/>**Datos:** Métricas CloudWatch, DynamoDB (datos de salud)"]
+    end
+
+    %% A2A Protocol Integration
+    A2ARegistry["🗂️ Registro de Agentes A2A<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**Descubrimiento de Servicios y Coordinación**<br/>• **Tarjetas de Agentes**: Metadata de capacidades y endpoints<br/>• **Estado de Salud**: Seguimiento de disponibilidad en tiempo real<br/>• **Balanceo de Carga**: Lógica de distribución de solicitudes<br/>• **Gestión de Versiones**: Seguimiento de despliegues de agentes<br/>• **Autenticación**: Protocolos de seguridad A2A<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**Implementación:**<br/>→ Tabla de registro DynamoDB<br/>→ Coordinación EventBridge<br/>→ Comunicación JSON-RPC<br/>→ Autenticación OAuth2 de agentes"]
+
+    %% Infrastructure Components
+    AWSInfrastructure["☁️ Infraestructura AWS Serverless<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**Arquitectura 100% Serverless**<br/>• **API Gateway**: Endpoints de API RESTful<br/>• **EventBridge**: Coordinación dirigida por eventos<br/>• **Funciones Lambda**: Agentes en contenedores<br/>• **Bedrock**: Acceso LLM bajo demanda<br/>• **DynamoDB**: Gestión de estado NoSQL<br/>• **Buckets S3**: Almacenamiento de objetos para datos/logs<br/>• **CloudWatch**: Monitoreo y observabilidad<br/>━━━━━━━━━━━━━━━━━━━━━━━━━━━<br/>**Beneficios:**<br/>→ Ejecución con auto-escalado<br/>→ Precios de pago por uso<br/>→ Alta disponibilidad<br/>→ Cero gestión de servidores"]
+
+    %% User Interactions
+    DataAnalyst -->|"Solicitudes de Scraping<br/>Configuración<br/>Monitoreo"| OrchestratorAgent
+    BusinessStakeholder -->|"Requisitos de Negocio<br/>Estándares de Calidad<br/>Reglas de Cumplimiento"| OrchestratorAgent
+    
+    OrchestratorAgent -->|"Actualizaciones de Progreso<br/>Entrega de Resultados<br/>Reportes de Calidad"| DataAnalyst
+    OrchestratorAgent -->|"Inteligencia de Negocio<br/>Reportes de Cumplimiento<br/>Métricas de Éxito"| BusinessStakeholder
+
+    %% A2A Inter-Agent Communication
+    OrchestratorAgent <-->|"Descubrimiento A2A<br/>Asignación de Tareas<br/>JSON-RPC"| A2ARegistry
+    
+    OrchestratorAgent -->|"Solicitudes de Análisis de Sitios<br/>A2A JSON-RPC"| ReconnaissanceAgent
+    ReconnaissanceAgent -->|"Inteligencia de Sitios<br/>Perfiles Técnicos"| OrchestratorAgent
+    
+    OrchestratorAgent -->|"Tareas de Navegación<br/>Control de Navegador"| BrowserAgent
+    BrowserAgent -->|"Estado de Página<br/>Resultados de Navegación"| OrchestratorAgent
+    
+    ReconnaissanceAgent -->|"Perfil de Sitio<br/>Estrategia de Navegación"| BrowserAgent
+    BrowserAgent -->|"Contenido Listo<br/>Triggers de Extracción"| ExtractionAgent
+    
+    ExtractionAgent -->|"Datos Crudos<br/>Metadata de Extracción"| ValidationAgent
+    ValidationAgent -->|"Puntuación de Calidad<br/>Resultados de Validación"| TransformationAgent
+    
+    TransformationAgent -->|"Procesamiento Completo<br/>Datasets Finales"| OrchestratorAgent
+    MonitoringAgent <-->|"Métricas de Salud<br/>Datos de Rendimiento"| OrchestratorAgent
+
+    %% External System Interactions
+    BrowserAgent <-->|"Navegador Headless<br/>Interacciones de Página<br/>Comandos Browser-Use"| TargetWebsites
+    ReconnaissanceAgent <-->|"Análisis Inicial<br/>Sondas Playwright-MCP"| TargetWebsites
+    ExtractionAgent <-->|"Extracción de Datos<br/>Control Playwright-MCP"| TargetWebsites
+    
+    BrowserAgent <-->|"Rotación de IP<br/>Gestión de Sesiones<br/>Cambio de Proxies"| ProxyInfrastructure
+    
+    MonitoringAgent -->|"Alertas y Notificaciones<br/>Actualizaciones de Estado<br/>Reportes de Errores"| NotificationChannels
+
+    %% Agent Registry Registration
+    ReconnaissanceAgent -->|"Registrar Capacidades<br/>Actualizar Tarjeta de Agente"| A2ARegistry
+    BrowserAgent -->|"Registro de Servicio<br/>Exposición de Endpoints"| A2ARegistry
+    ExtractionAgent -->|"Declaración de Capacidades<br/>Actualizaciones de Salud"| A2ARegistry
+    ValidationAgent -->|"Servicios de Calidad<br/>Endpoints de Validación"| A2ARegistry
+    TransformationAgent -->|"Servicios de Procesamiento<br/>APIs de Transformación"| A2ARegistry
+    MonitoringAgent -->|"Servicios de Observación<br/>APIs de Monitoreo"| A2ARegistry
+
+    %% Infrastructure Relationships
+    OrchestratorAgent -.->|"Ejecución Serverless<br/>Auto-escalado"| AWSInfrastructure
+    ReconnaissanceAgent -.->|"Runtime Lambda<br/>LLM Bedrock"| AWSInfrastructure
+    BrowserAgent -.->|"Soporte Contenedores<br/>Runtime Extendido"| AWSInfrastructure
+    ExtractionAgent -.->|"Computación Alta Memoria<br/>Almacenamiento S3"| AWSInfrastructure
+    ValidationAgent -.->|"Procesamiento por Lotes<br/>DynamoDB"| AWSInfrastructure
+    TransformationAgent -.->|"Operaciones ETL<br/>Exportación Multi-formato"| AWSInfrastructure
+    MonitoringAgent -.->|"Integración CloudWatch<br/>Métricas en Tiempo Real"| AWSInfrastructure
+
+    %% Styling
+    classDef user fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    classDef orchestrator fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#000
+    classDef domainAgent fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef infrastructure fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    classDef external fill:#ffebee,stroke:#d32f2f,stroke-width:2px,color:#000
+    classDef integration fill:#fff8e1,stroke:#fbc02d,stroke-width:2px,color:#000
+    
+    class DataAnalyst,BusinessStakeholder user
+    class OrchestratorAgent orchestrator
+    class ReconnaissanceAgent,BrowserAgent,ExtractionAgent,ValidationAgent,TransformationAgent,MonitoringAgent domainAgent
+    class A2ARegistry,AWSInfrastructure infrastructure
+    class TargetWebsites,ProxyInfrastructure,NotificationChannels external
