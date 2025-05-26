@@ -1,0 +1,35 @@
+C4Context
+title Enjambre de Agentes para Web Scraping Automatizado con Playwright-MCP (Contexto)
+
+Person(qaUser, "QA Engineer", "Solicita ejecución automatizada de scraping con validaciones.")
+Person(devOps, "DevOps Engineer", "Mantiene la infraestructura y las funciones serverless.")
+Person(productOwner, "Product Owner", "Requiere visibilidad sobre el estado de scraping y calidad de datos.")
+
+System(webScraperSystem, "Sistema Multi-Agente A2A Serverless", "Orquestación de scraping web con LLMs on-demand y ejecución paralela basada en agentes especializados.")
+
+System_Boundary(webScraperSystem, "Enjambre A2A de Agentes en AWS Serverless") {
+  
+  Container(OrchestratorAgent, "Orchestrator Agent (LangGraph)", "Lambda + LangGraph", "Coordina los agentes disponibles y distribuye tareas según el dominio y la Agent Card.")
+
+  Container(PlaywrightAgent, "Scraper Agent", "Lambda + Playwright-MCP", "Ejecuta scraping real controlando el navegador via MCP. Devuelve datos estructurados.")
+
+  Container(LLMVerifierAgent, "Verifier Agent", "Lambda + Bedrock", "Analiza la calidad de los datos scrapeados usando un LLM (Claude/Command-R). Aplica RAGAS si es necesario.")
+
+  Container(AgentRegistry, "A2A Directory", "DynamoDB", "Base de datos con las Agent Cards activas del enjambre, para descubrimiento dinámico A2A.")
+
+  Container(ArtifactStore, "Evidencia y Resultados", "S3", "Almacena capturas, logs, trazas del navegador, y archivos generados por los agentes.")
+
+  Container(BedrockService, "Bedrock LLM On-demand", "AWS Bedrock", "Provee LLMs bajo demanda para tareas específicas de cada agente (generación, evaluación, resumen).")
+  
+}
+
+Rel(qaUser, webScraperSystem, "Lanza el scraping desde una UI o trigger CI/CD.")
+Rel(productOwner, webScraperSystem, "Recibe informes sobre calidad y estado.")
+Rel(devOps, webScraperSystem, "Despliega y supervisa los lambdas y la base de agentes.")
+
+Rel(OrchestratorAgent, AgentRegistry, "Consulta", "JSON-RPC")
+Rel(OrchestratorAgent, PlaywrightAgent, "Invoca via A2A", "JSON-RPC + EventBridge")
+Rel(OrchestratorAgent, LLMVerifierAgent, "Envía tarea de verificación", "A2A")
+Rel(PlaywrightAgent, ArtifactStore, "Guarda datos y evidencias", "S3 PUT")
+Rel(LLMVerifierAgent, BedrockService, "Llama a LLM (Claude, Command-R)", "API Call")
+Rel(LLMVerifierAgent, ArtifactStore, "Sube informe de validación", "S3 PUT")
