@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco de IA del Futuro - Arquitectura Interactiva</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-engagement: #E3F2FD;
+      --color-ai: #BBDEFB;
+      --color-tech: #2196F3;
+      --color-operating: #E8EAF6;
+      --shadow: 0 2px 8px rgba(0,0,0,0.1);
+      --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #1a202c;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 3px solid #e2e8f0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #64748b;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #475569;
+    }
+
+    .btn-secondary:hover {
+      background: #cbd5e1;
+    }
+
+    .btn-tour {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+    }
+
+    .btn-tour:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+    }
+
+    .layer {
+      margin-bottom: 24px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .layer-header {
+      padding: 18px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+
+    .layer-header:hover {
+      filter: brightness(0.95);
+    }
+
+    .layer-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .layer-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .layer-desc {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+
+    .layer-icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .layer.collapsed .layer-icon {
+      transform: rotate(-90deg);
+    }
+
+    .layer-content {
+      padding: 20px;
+      background: #f8fafc;
+      max-height: 2000px;
+      overflow: visible;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .layer.collapsed .layer-content {
+      max-height: 0;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+
+    .layer-1 .layer-header { background: var(--color-engagement); }
+    .layer-2 .layer-header { background: var(--color-ai); }
+    .layer-3 .layer-header { background: var(--color-tech); color: white; }
+    .layer-4 .layer-header { background: var(--color-operating); }
+
+    .components-wrapper {
+      overflow-x: auto;
+      overflow-y: visible;
+      padding-bottom: 10px;
+    }
+
+    .components-grid {
+      display: flex;
+      gap: 16px;
+      min-width: min-content;
+    }
+
+    .component-card {
+      min-width: 260px;
+      max-width: 300px;
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      position: relative;
+    }
+
+    .component-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: #667eea;
+    }
+
+    .component-card.highlight {
+      border-color: #f5576c;
+      box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.2);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateY(-4px) scale(1); }
+      50% { transform: translateY(-4px) scale(1.02); }
+    }
+
+    .component-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .component-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1e293b;
+      line-height: 1.3;
+    }
+
+    .component-desc {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    .component-valor {
+      margin-top: 10px;
+      padding: 8px;
+      background: #f0fdf4;
+      border-left: 3px solid #22c55e;
+      font-size: 0.8rem;
+      color: #166534;
+      border-radius: 4px;
+    }
+
+    .component-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      background: #e0e7ff;
+      color: #4338ca;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Modal mejorado */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      padding: 24px;
+      border-bottom: 2px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e293b;
+      flex: 1;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #64748b;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-section {
+      margin-bottom: 24px;
+    }
+
+    .modal-section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .valor-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-left: 4px solid #22c55e;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .valor-box strong {
+      display: block;
+      color: #166534;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .valor-box p {
+      color: #166534;
+      line-height: 1.6;
+    }
+
+    .connection-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .connection-item {
+      background: white;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+    }
+
+    .connection-item:hover {
+      border-color: #667eea;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+    }
+
+    .connection-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .connection-arrow {
+      color: #667eea;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .connection-name {
+      font-weight: 600;
+      color: #1e293b;
+      flex: 1;
+    }
+
+    .connection-capa {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #f1f5f9;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .connection-razon {
+      font-size: 0.9rem;
+      color: #64748b;
+      padding-left: 30px;
+      line-height: 1.4;
+    }
+
+    /* Tour wizard mejorado */
+    .tour-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+    }
+
+    .tour-modal.active {
+      display: flex;
+    }
+
+    .tour-content {
+      background: white;
+      border-radius: 16px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    .tour-header {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 24px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .tour-progress {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .tour-progress-dot {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .tour-progress-dot.active {
+      background: white;
+    }
+
+    .tour-step-info {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+
+    .tour-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .tour-subtitle {
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    .tour-body {
+      padding: 32px;
+    }
+
+    .tour-capa-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .tour-description {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #1e293b;
+      margin-bottom: 20px;
+    }
+
+    .tour-valor {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-left: 4px solid #22c55e;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tour-valor-label {
+      font-weight: 700;
+      color: #166534;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tour-valor-text {
+      color: #166534;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .tour-footer {
+      padding: 20px 32px;
+      border-top: 2px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tour-nav {
+      display: flex;
+      gap: 12px;
+    }
+
+    .tour-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .tour-btn-prev {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .tour-btn-prev:hover {
+      background: #e2e8f0;
+    }
+
+    .tour-btn-next {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .tour-btn-next:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .tour-btn-finish {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      color: white;
+    }
+
+    .tour-btn-finish:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+    }
+
+    .tour-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .legend {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+      padding: 16px;
+      background: #f8fafc;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .legend-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+
+    .components-wrapper::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .components-wrapper::-webkit-scrollbar-track {
+      background: #e2e8f0;
+      border-radius: 4px;
+    }
+
+    .components-wrapper::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 4px;
+    }
+
+    .components-wrapper::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 1.8rem; }
+      .subtitle { font-size: 0.95rem; }
+      .container { padding: 20px; }
+      .component-card { min-width: 200px; }
+      .tour-title { font-size: 1.4rem; }
+      .tour-body { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🏦 Banco de IA del Futuro</h1>
+      <p class="subtitle">Arquitectura empresarial end-to-end que transforma la banca con IA, datos y equipos autónomos</p>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--color-engagement);"></div>
+          <span>Engagement</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--color-ai);"></div>
+          <span>Decisiones con IA</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--color-tech);"></div>
+          <span>Tecnología y Datos</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--color-operating);"></div>
+          <span>Modelo Operativo</span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn btn-primary" onclick="toggleAllLayers()">
+          <span id="toggleText">Colapsar Todo</span>
+        </button>
+        <button class="btn btn-tour" onclick="startTour()">
+          🎯 Ver Journey: Préstamo Personal
+        </button>
+      </div>
+    </header>
+
+    <main id="layersContainer">
+      <!-- Las capas se generarán dinámicamente -->
+    </main>
+  </div>
+
+  <!-- Modal de detalles -->
+  <div class="modal" id="modal" onclick="closeModalBackground(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Tour wizard -->
+  <div class="tour-modal" id="tourModal">
+    <div class="tour-content">
+      <div class="tour-header">
+        <div class="tour-progress" id="tourProgress"></div>
+        <div class="tour-step-info" id="tourStepInfo"></div>
+        <div class="tour-title" id="tourTitle"></div>
+        <div class="tour-subtitle">Caso de uso: Solicitud de préstamo personal</div>
+      </div>
+      <div class="tour-body">
+        <div class="tour-capa-badge" id="tourCapaBadge"></div>
+        <div class="tour-description" id="tourDescription"></div>
+        <div class="tour-valor">
+          <div class="tour-valor-label">💡 Valor para el negocio</div>
+          <div class="tour-valor-text" id="tourValor"></div>
+        </div>
+      </div>
+      <div class="tour-footer">
+        <button class="tour-btn tour-btn-prev" id="tourPrev" onclick="prevTourStep()">← Anterior</button>
+        <div id="tourCounter" style="color: #64748b; font-weight: 600;"></div>
+        <div class="tour-nav">
+          <button class="tour-btn tour-btn-next" id="tourNext" onclick="nextTourStep()">Siguiente →</button>
+          <button class="tour-btn tour-btn-finish" id="tourFinish" onclick="finishTour()" style="display: none;">✓ Finalizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const bankData = {"metadata": {"titulo": "Banco de IA del Futuro", "subtitulo": "Arquitectura empresarial end-to-end"}, "capas": {"engagement": {"numero": 1, "nombre": "Engagement", "color": "#E3F2FD", "descripcion": "Canales de interacción con clientes", "elementos": [{"id": "conv_multimodal", "nombre": "Experiencias conversacionales multimodales", "resumen": "Chat, voz y visión para hablar con clientes", "valor_negocio": "Atención 24/7 en el canal preferido del cliente", "conecta_con": [{"nombre": "Orquestador de IA", "capa": "IA", "razon": "Coordina respuestas inteligentes"}, {"nombre": "Selector", "capa": "IA", "razon": "Deriva a agente o proceso correcto"}, {"nombre": "Motor de búsqueda", "capa": "Tecnología", "razon": "Recupera información relevante"}, {"nombre": "Bases vectoriales", "capa": "Tecnología", "razon": "Búsqueda semántica de contenido"}]}, {"id": "productos_inteligentes", "nombre": "Productos y servicios inteligentes", "resumen": "Ofertas personalizadas en tiempo real", "valor_negocio": "Aumenta conversión con recomendaciones precisas", "conecta_con": [{"nombre": "Modelo: Decisión de crédito", "capa": "IA", "razon": "Evalúa capacidad de pago"}, {"nombre": "Modelo: Retención y cross-sell", "capa": "IA", "razon": "Sugiere productos complementarios"}, {"nombre": "IA industrial", "capa": "Tecnología", "razon": "Ejecuta modelos en producción"}]}, {"id": "omnicanal", "nombre": "Experiencias omnicanal", "resumen": "Móvil, web, sucursal y call center unificados", "valor_negocio": "Cliente continúa su gestión en cualquier canal", "conecta_con": [{"nombre": "Orquestador de IA", "capa": "IA", "razon": "Mantiene contexto entre canales"}, {"nombre": "Componentes reutilizables", "capa": "IA", "razon": "UI y lógica compartida"}, {"nombre": "Tecnología e infraestructura", "capa": "Tecnología", "razon": "APIs y microservicios"}]}, {"id": "gemelos_digitales", "nombre": "Gemelos digitales", "resumen": "Simulación de clientes y empleados", "valor_negocio": "Prueba cambios sin afectar operación real", "conecta_con": [{"nombre": "Modelo: Adquisición de clientes", "capa": "IA", "razon": "Simula comportamiento de leads"}, {"nombre": "IA industrial", "capa": "Tecnología", "razon": "Infraestructura de simulación"}, {"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Históricos para entrenar gemelos"}]}]}, "ia_decisiones": {"numero": 2, "nombre": "Decisiones con IA", "color": "#BBDEFB", "descripcion": "Agentes y modelos que toman decisiones", "elementos": [{"id": "orquestador", "nombre": "Orquestador de IA", "resumen": "Cerebro que coordina todos los agentes", "valor_negocio": "Resuelve solicitudes complejas automáticamente", "conecta_con": [{"nombre": "Orquestación de LLM", "capa": "Tecnología", "razon": "Gestiona modelos de lenguaje"}, {"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Acceso controlado a LLMs"}, {"nombre": "Torre de control de IA", "capa": "Operativo", "razon": "Gobierno y monitoreo"}]}, {"id": "agente_negociacion", "nombre": "Agente: Negociación", "resumen": "Negocia condiciones de productos", "valor_negocio": "Cierra ventas sin intervención humana", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Registra cada negociación"}, {"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Genera propuestas de valor"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Valida condiciones"}]}, {"id": "agente_riesgo", "nombre": "Agente: Experto en políticas de riesgo", "resumen": "Valida que decisiones cumplan límites", "valor_negocio": "Evita exposición no autorizada", "conecta_con": [{"nombre": "Seguridad", "capa": "Tecnología", "razon": "Verifica permisos"}, {"nombre": "Preprocesamiento de datos", "capa": "Tecnología", "razon": "Calcula exposición actual"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Ajusta políticas rápidamente"}]}, {"id": "agente_adharness", "nombre": "Agente: Optimización de campañas", "resumen": "Mejora performance de marketing", "valor_negocio": "Reduce costo de adquisición", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Mide conversión en tiempo real"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Ajusta presupuesto dinámicamente"}]}, {"id": "agente_reconocimiento", "nombre": "Agente: Reconocimiento", "resumen": "Extrae datos de documentos", "valor_negocio": "Agiliza onboarding y operaciones", "conecta_con": [{"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Visión por computadora"}, {"nombre": "Motor de búsqueda", "capa": "Tecnología", "razon": "Valida contra base de datos"}]}, {"id": "agente_recopilador", "nombre": "Agente: Recopilador", "resumen": "Reúne evidencia de múltiples fuentes", "valor_negocio": "Acelera revisiones y auditorías", "conecta_con": [{"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Sintetiza documentos"}, {"nombre": "Motor de búsqueda", "capa": "Tecnología", "razon": "Encuentra evidencia relacionada"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Integra fuentes externas"}]}, {"id": "agente_resumen", "nombre": "Agente: Resumen", "resumen": "Resume interacciones y documentos", "valor_negocio": "Empleados entienden situación en segundos", "conecta_con": [{"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Generación de lenguaje natural"}, {"nombre": "Motor de búsqueda", "capa": "Tecnología", "razon": "Obtiene historial completo"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Publica resumen en canales"}]}, {"id": "agente_colateral", "nombre": "Agente: Analizador de colateral", "resumen": "Valora garantías y propiedades", "valor_negocio": "Aprueba créditos con colateral rápidamente", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Audita valuaciones"}, {"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Analiza características de propiedad"}, {"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Histórico de precios de mercado"}]}, {"id": "agente_propiedad", "nombre": "Agente: Cambio de propiedad", "resumen": "Gestiona transferencias y actualizaciones", "valor_negocio": "Automatiza trámites registrales", "conecta_con": [{"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Completa formularios automáticamente"}, {"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Valida titularidad actual"}, {"nombre": "Almacenamiento estructurado", "capa": "Tecnología", "razon": "Registra nueva titularidad"}]}, {"id": "agente_legal_analizador", "nombre": "Agente: Analizador legal", "resumen": "Revisa cláusulas y términos", "valor_negocio": "Detecta riesgos legales antes de firmar", "conecta_con": [{"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Comprensión de contratos"}, {"nombre": "Motor de búsqueda", "capa": "Tecnología", "razon": "Compara con precedentes"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Consulta normativa vigente"}]}, {"id": "agente_ia_legal", "nombre": "Agente: IA Legal", "resumen": "Asistente jurídico generativo", "valor_negocio": "Responde consultas legales al instante", "conecta_con": [{"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Razonamiento legal"}, {"nombre": "Motor de búsqueda", "capa": "Tecnología", "razon": "Jurisprudencia y normativa"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Valida respuestas con expertos"}]}, {"id": "agente_fraude", "nombre": "Agente: Detector de fraude", "resumen": "Identifica transacciones sospechosas", "valor_negocio": "Protege al banco y clientes de pérdidas", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Monitorea patrones en tiempo real"}, {"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Analiza contexto de transacción"}, {"nombre": "Seguridad", "capa": "Tecnología", "razon": "Bloquea operaciones riesgosas"}]}, {"id": "agente_patrones", "nombre": "Agente: Detector de patrones", "resumen": "Encuentra correlaciones ocultas", "valor_negocio": "Descubre oportunidades y riesgos", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Analiza series temporales"}, {"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Interpreta patrones complejos"}, {"nombre": "Motor de búsqueda", "capa": "Tecnología", "razon": "Cruza con eventos externos"}]}, {"id": "agente_selector", "nombre": "Agente: Selector", "resumen": "Enruta solicitudes al agente correcto", "valor_negocio": "Cliente llega al especialista directo", "conecta_con": [{"nombre": "Orquestador de IA", "capa": "IA", "razon": "Recibe instrucciones de routing"}, {"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Aprende de derivaciones exitosas"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Invoca agente seleccionado"}]}, {"id": "agente_gasto", "nombre": "Agente: Gestión de gasto", "resumen": "Optimiza presupuestos en tiempo real", "valor_negocio": "Maximiza ROI de inversiones", "conecta_con": [{"nombre": "MLOps", "capa": "Tecnología", "razon": "Predice consumo futuro"}, {"nombre": "FinOps", "capa": "Tecnología", "razon": "Monitorea costos de cloud"}, {"nombre": "Captura de valor", "capa": "Operativo", "razon": "Reporta ahorros"}]}, {"id": "agente_conocimiento", "nombre": "Agente: Búsqueda de conocimiento", "resumen": "RAG corporativo", "valor_negocio": "Empleados encuentran respuestas certificadas", "conecta_con": [{"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Genera respuestas contextuales"}, {"nombre": "Motor de búsqueda", "capa": "Tecnología", "razon": "Recupera documentos relevantes"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Acceso a sistemas corporativos"}]}, {"id": "agente_coach", "nombre": "Agente: Coach", "resumen": "Asiste a empleados en vivo", "valor_negocio": "Mejora performance de equipos", "conecta_con": [{"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Escucha interacciones en tiempo real"}, {"nombre": "Equipos autónomos", "capa": "Operativo", "razon": "Capacitación continua"}, {"nombre": "Estrategia de talento", "capa": "Operativo", "razon": "Identifica gaps de habilidades"}]}, {"id": "agente_pruebas", "nombre": "Agente: Generador de casos de prueba", "resumen": "Crea tests automatizados", "valor_negocio": "Reduce errores en producción", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Detecta escenarios edge case"}, {"nombre": "MLOps", "capa": "Tecnología", "razon": "Valida modelos antes de deploy"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Ejecuta pruebas de integración"}]}, {"id": "agente_impuestos", "nombre": "Agente: Experto tributario", "resumen": "Cálculo y validación fiscal", "valor_negocio": "Cumplimiento automático de normativa", "conecta_con": [{"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Interpreta regulaciones complejas"}, {"nombre": "Motor de búsqueda", "capa": "Tecnología", "razon": "Actualiza con cambios normativos"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Integra con servicios fiscales"}]}, {"id": "modelo_adquisicion", "nombre": "Modelo: Adquisición de clientes", "resumen": "Scoring de leads y targeting", "valor_negocio": "Invierte en prospectos con mayor potencial", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Mide conversión por segmento"}, {"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Enriquece perfil de lead"}, {"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Histórico de conversiones"}]}, {"id": "modelo_credito", "nombre": "Modelo: Decisión de crédito", "resumen": "Underwriting y evaluación de riesgo", "valor_negocio": "Aprueba más créditos buenos, rechaza malos", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Monitorea tasas de default"}, {"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Analiza narrativa del solicitante"}, {"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Scoring externo y bureau"}, {"nombre": "Preprocesamiento de datos", "capa": "Tecnología", "razon": "Feature engineering"}]}, {"id": "modelo_cobranzas", "nombre": "Modelo: Monitoreo y cobranzas", "resumen": "Early warning y estrategias de cobranza", "valor_negocio": "Recupera cartera antes de pérdida total", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Detecta señales de mora temprana"}, {"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Personaliza mensajes de cobranza"}, {"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Histórico de pagos"}]}, {"id": "modelo_retencion", "nombre": "Modelo: Retención y cross-sell", "resumen": "Churn prediction y next-best-offer", "valor_negocio": "Retiene clientes valiosos y aumenta wallet share", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Identifica cambios de comportamiento"}, {"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Genera ofertas persuasivas"}, {"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Productos actuales y preferencias"}]}, {"id": "modelo_servicio", "nombre": "Modelo: Servicio y engagement", "resumen": "Atención proactiva y personalizada", "valor_negocio": "Clientes satisfechos se quedan más tiempo", "conecta_con": [{"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Mide NPS y satisfacción"}, {"nombre": "Gateway de LLM", "capa": "Tecnología", "razon": "Anticipa necesidades"}, {"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Interacciones previas"}, {"nombre": "Equipos autónomos", "capa": "Operativo", "razon": "Escala mejor servicio"}]}, {"id": "componentes_reutilizables", "nombre": "Componentes reutilizables", "resumen": "Librerías y servicios compartidos", "valor_negocio": "Desarrolla más rápido sin duplicar código", "conecta_con": [{"nombre": "IA industrial", "capa": "Tecnología", "razon": "Pipeline de modelos estándar"}, {"nombre": "Observabilidad", "capa": "Tecnología", "razon": "Telemetría común"}, {"nombre": "APIs y microservicios", "capa": "Tecnología", "razon": "Catálogo de servicios"}, {"nombre": "Torre de control de IA", "capa": "Operativo", "razon": "Gobierno de reutilización"}]}, {"id": "seguridad_info", "nombre": "Estándares de seguridad", "resumen": "Controles y compliance", "valor_negocio": "Protege datos sensibles y cumple regulación", "conecta_con": [{"nombre": "FinOps", "capa": "Tecnología", "razon": "Costos de infraestructura segura"}, {"nombre": "Seguridad", "capa": "Tecnología", "razon": "Implementación técnica"}, {"nombre": "Preprocesamiento de datos", "capa": "Tecnología", "razon": "Enmascaramiento y cifrado"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Security by design"}]}, {"id": "protocolos_riesgo", "nombre": "Protocolos de riesgo simplificados", "resumen": "Flujos de aprobación ágiles", "valor_negocio": "Velocidad sin comprometer control", "conecta_con": [{"nombre": "Seguridad", "capa": "Tecnología", "razon": "Controles automatizados"}, {"nombre": "Preprocesamiento de datos", "capa": "Tecnología", "razon": "Validaciones en pipeline"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Iteración de políticas"}, {"nombre": "Torre de control de IA", "capa": "Operativo", "razon": "Excepciones y alertas"}]}]}, "tecnologia": {"numero": 3, "nombre": "Tecnología y Datos", "color": "#2196F3", "descripcion": "Plataforma cloud-native y datos", "elementos": [{"id": "ia_industrial", "nombre": "IA industrial y aprendizaje automático", "resumen": "Plataforma de ML a escala", "valor_negocio": "Modelos en producción sirviendo millones de decisiones", "conecta_con": [{"nombre": "Equipos autónomos", "capa": "Operativo", "razon": "Scientist embedded en productos"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Sprints de experimentación"}, {"nombre": "Torre de control de IA", "capa": "Operativo", "razon": "Registro y gobierno de modelos"}]}, {"id": "observabilidad", "nombre": "Observabilidad", "resumen": "Logs, métricas y trazas", "valor_negocio": "Detecta y resuelve incidentes antes que afecten clientes", "conecta_con": [{"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "On-call y post-mortems"}, {"nombre": "Torre de control de IA", "capa": "Operativo", "razon": "Dashboards ejecutivos"}]}, {"id": "mlops", "nombre": "MLOps", "resumen": "CI/CD para modelos", "valor_negocio": "Deploy de modelos en minutos, no meses", "conecta_con": [{"nombre": "Equipos autónomos", "capa": "Operativo", "razon": "Self-service de despliegue"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Continuous delivery"}, {"nombre": "Torre de control de IA", "capa": "Operativo", "razon": "Aprobaciones automáticas"}]}, {"id": "finops", "nombre": "FinOps", "resumen": "Gestión de costos cloud", "valor_negocio": "Optimiza gasto sin sacrificar performance", "conecta_con": [{"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Teams conscientes de costos"}, {"nombre": "Captura de valor", "capa": "Operativo", "razon": "ROI de optimizaciones"}]}, {"id": "orquestacion_llm", "nombre": "Orquestación de LLM", "resumen": "Coordinación de modelos de lenguaje", "valor_negocio": "Combina múltiples LLMs para mejor resultado", "conecta_con": [{"nombre": "Orquestador de IA", "capa": "IA", "razon": "Recibe instrucciones de composición"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Experimenta con nuevos modelos"}, {"nombre": "Torre de control de IA", "capa": "Operativo", "razon": "Aprueba modelos para producción"}]}, {"id": "gateway_llm", "nombre": "Gateway de LLM", "resumen": "API unificada a modelos", "valor_negocio": "Cambia de proveedor sin reescribir código", "conecta_con": [{"nombre": "Orquestador de IA", "capa": "IA", "razon": "Punto de entrada único"}, {"nombre": "Agentes especializados", "capa": "IA", "razon": "Consume LLMs de forma estándar"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Simplifica desarrollo"}]}, {"id": "seguridad", "nombre": "Seguridad", "resumen": "Identidad, cifrado y amenazas", "valor_negocio": "Protege activos más críticos del banco", "conecta_con": [{"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "DevSecOps integrado"}, {"nombre": "Torre de control de IA", "capa": "Operativo", "razon": "Auditoría de accesos"}]}, {"id": "datos_empresariales", "nombre": "Datos empresariales", "resumen": "Catálogo, calidad y gobierno", "valor_negocio": "Datos confiables para decisiones correctas", "conecta_con": [{"nombre": "Equipos autónomos", "capa": "Operativo", "razon": "Data product owners"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Data as code"}]}, {"id": "motor_busqueda", "nombre": "Motor de búsqueda y recuperación", "resumen": "Indexación y RAG", "valor_negocio": "Encuentra información relevante en segundos", "conecta_con": [{"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Indexa catálogo completo"}, {"nombre": "Bases vectoriales", "capa": "Tecnología", "razon": "Búsqueda semántica"}]}, {"id": "ingesta_datos", "nombre": "Ingesta de datos", "resumen": "Batch y streaming", "valor_negocio": "Datos frescos para decisiones en tiempo real", "conecta_con": [{"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Alimenta data lake"}, {"nombre": "Preprocesamiento de datos", "capa": "Tecnología", "razon": "Primera etapa del pipeline"}]}, {"id": "preprocesamiento", "nombre": "Preprocesamiento de datos", "resumen": "Limpieza y feature engineering", "valor_negocio": "Modelos más precisos con mejores features", "conecta_con": [{"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Transforma datos crudos"}, {"nombre": "Bases vectoriales", "capa": "Tecnología", "razon": "Genera embeddings"}]}, {"id": "bases_vectoriales", "nombre": "Bases de datos vectoriales", "resumen": "Embeddings para búsqueda semántica", "valor_negocio": "Encuentra contenido por significado, no palabras exactas", "conecta_con": [{"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Almacena representaciones"}, {"nombre": "Motor de búsqueda", "capa": "Tecnología", "razon": "Similarity search"}]}, {"id": "postprocesamiento", "nombre": "Postprocesamiento de datos", "resumen": "Agregación y formatos de salida", "valor_negocio": "Reportes y APIs listos para consumir", "conecta_con": [{"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Última etapa del pipeline"}, {"nombre": "Almacenamiento estructurado", "capa": "Tecnología", "razon": "Persiste resultados"}]}, {"id": "almacenamiento_estructurado", "nombre": "Almacenamiento de datos estructurados", "resumen": "Relacional y NoSQL", "valor_negocio": "Transacciones ACID y consultas rápidas", "conecta_con": [{"nombre": "Datos empresariales", "capa": "Tecnología", "razon": "Capa de persistencia"}]}, {"id": "apis_microservicios", "nombre": "APIs y microservicios", "resumen": "Arquitectura moderna desacoplada", "valor_negocio": "Escala independiente cada capacidad", "conecta_con": [{"nombre": "Equipos autónomos", "capa": "Operativo", "razon": "Cada squad posee sus servicios"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Deploy independiente"}]}, {"id": "infra_inteligente", "nombre": "Infraestructura inteligente", "resumen": "Operaciones de IA y nube híbrida", "valor_negocio": "Auto-escala y auto-remedia", "conecta_con": [{"nombre": "Equipos autónomos", "capa": "Operativo", "razon": "Platform engineering"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Infrastructure as code"}]}, {"id": "ciberseguridad", "nombre": "Ciberseguridad y controles", "resumen": "Defensa en profundidad", "valor_negocio": "Protección contra ataques sofisticados", "conecta_con": [{"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Security champions"}, {"nombre": "Torre de control de IA", "capa": "Operativo", "razon": "Reportes de vulnerabilidades"}]}, {"id": "modernizacion_core", "nombre": "Modernización del core", "resumen": "Migración progresiva de legacy", "valor_negocio": "Agilidad sin big-bang riesgoso", "conecta_con": [{"nombre": "Equipos autónomos", "capa": "Operativo", "razon": "Squads de modernización"}, {"nombre": "Formas ágiles de trabajo", "capa": "Operativo", "razon": "Strangler pattern"}, {"nombre": "Estrategia de talento", "capa": "Operativo", "razon": "Upskill de legacy a cloud"}]}, {"id": "estrategia_tech", "nombre": "Estrategia tech-forward", "resumen": "Build vs buy y plan de talento", "valor_negocio": "Invierte en diferenciadores, compra commodities", "conecta_con": [{"nombre": "Estrategia de talento", "capa": "Operativo", "razon": "Reclutamiento alineado a stack"}, {"nombre": "Cultura y capacidades", "capa": "Operativo", "razon": "Fomenta innovación técnica"}]}]}, "operativo": {"numero": 4, "nombre": "Modelo Operativo", "color": "#E8EAF6", "descripcion": "Equipos, procesos y gobierno", "elementos": [{"id": "equipos_autonomos", "nombre": "Equipos autónomos", "resumen": "Squads con ownership end-to-end", "valor_negocio": "Velocidad sin coordinación inter-equipos", "conecta_con": []}, {"id": "agil", "nombre": "Formas ágiles de trabajo", "resumen": "Scrum, Kanban, DevOps", "valor_negocio": "Entrega continua de valor al negocio", "conecta_con": []}, {"id": "torre_control", "nombre": "Torre de control de IA", "resumen": "Gobierno centralizado de IA", "valor_negocio": "Escalas sin perder control ni compliance", "conecta_con": []}, {"id": "talento", "nombre": "Estrategia de talento moderno", "resumen": "Upskilling y roles críticos de IA", "valor_negocio": "Atrae y retiene top talent tech", "conecta_con": []}, {"id": "cultura", "nombre": "Cultura y capacidades", "resumen": "Cliente al centro y datos", "valor_negocio": "Decisiones basadas en evidencia, no opiniones", "conecta_con": []}, {"id": "captura_valor", "nombre": "Oficina de captura de valor", "resumen": "KPI y seguimiento de ROI", "valor_negocio": "Demuestra impacto de inversión en IA", "conecta_con": []}]}}, "caso_uso_tour": {"nombre": "Solicitud de préstamo personal", "descripcion": "Journey completo desde que cliente pide préstamo hasta que recibe oferta", "pasos": [{"numero": 1, "elemento": "conv_multimodal", "capa": "Engagement", "titulo": "Cliente inicia conversación", "descripcion": "Cliente abre app y escribe 'Quiero un préstamo de $10,000'", "valor": "Atención inmediata 24/7 sin esperar a horario bancario"}, {"numero": 2, "elemento": "agente_selector", "capa": "IA", "titulo": "Selector deriva a proceso", "descripcion": "Selector identifica intención y activa workflow de crédito", "valor": "Cliente no tiene que explicar múltiples veces lo que necesita"}, {"numero": 3, "elemento": "modelo_credito", "capa": "IA", "titulo": "Modelo evalúa riesgo", "descripcion": "Analiza historial, ingresos, obligaciones y scoring externo", "valor": "Decisión objetiva en segundos, no días"}, {"numero": 4, "elemento": "datos_empresariales", "capa": "Tecnología", "titulo": "Consulta datos del cliente", "descripcion": "Recupera transacciones, productos vigentes y comportamiento", "valor": "Decisión informada con data completa y actualizada"}, {"numero": 5, "elemento": "motor_busqueda", "capa": "Tecnología", "titulo": "Búsqueda de histórico", "descripcion": "Encuentra préstamos previos y patrones de pago", "valor": "Considera experiencia completa del cliente"}, {"numero": 6, "elemento": "bases_vectoriales", "capa": "Tecnología", "titulo": "Similarity search", "descripcion": "Compara con clientes similares que pagaron bien", "valor": "Decisión basada en casos análogos exitosos"}, {"numero": 7, "elemento": "agente_legal_analizador", "capa": "IA", "titulo": "Revisión legal", "descripcion": "Valida términos, tasas y cláusulas según normativa", "valor": "Compliance automático sin intervención de abogado"}, {"numero": 8, "elemento": "agente_negociacion", "capa": "IA", "titulo": "Optimiza condiciones", "descripcion": "Ajusta tasa, plazo y monto para maximizar aprobación", "valor": "Cliente recibe mejor oferta posible para su perfil"}, {"numero": 9, "elemento": "productos_inteligentes", "capa": "Engagement", "titulo": "Oferta personalizada", "descripcion": "Cliente ve préstamo pre-aprobado con condiciones específicas", "valor": "Acepta en un clic y dinero en cuenta en minutos"}]}};
+
+    let allExpanded = true;
+    let currentTourStep = 0;
+
+    function init() {
+      renderLayers();
+    }
+
+    function renderLayers() {
+      const container = document.getElementById('layersContainer');
+      container.innerHTML = '';
+
+      Object.entries(bankData.capas).forEach(([key, layer]) => {
+        const layerEl = createLayerElement(layer);
+        container.appendChild(layerEl);
+      });
+    }
+
+    function createLayerElement(layer) {
+      const div = document.createElement('div');
+      div.className = `layer layer-${layer.numero}`;
+      div.setAttribute('data-layer', layer.numero);
+
+      div.innerHTML = `
+        <div class="layer-header" onclick="toggleLayer(${layer.numero})">
+          <div>
+            <div class="layer-title">
+              <span class="layer-number">${layer.numero}</span>
+              ${layer.nombre}
+            </div>
+            <div class="layer-desc">${layer.descripcion}</div>
+          </div>
+          <div class="layer-icon">▼</div>
+        </div>
+        <div class="layer-content">
+          <div class="components-wrapper">
+            <div class="components-grid">
+              ${renderComponents(layer.elementos, layer.numero)}
+            </div>
+          </div>
+        </div>
+      `;
+
+      return div;
+    }
+
+    function renderComponents(elementos, layerNum) {
+      return elementos.map(elem => `
+        <div class="component-card" data-id="${elem.id}" onclick="showComponentDetail('${elem.id}')">
+          ${elem.conecta_con && elem.conecta_con.length > 0 ? `<div class="component-badge">${elem.conecta_con.length} conexiones</div>` : ''}
+          <div class="component-title">${elem.nombre}</div>
+          <div class="component-desc">${elem.resumen}</div>
+          ${elem.valor_negocio ? `<div class="component-valor">💡 ${elem.valor_negocio}</div>` : ''}
+        </div>
+      `).join('');
+    }
+
+    function toggleLayer(layerNum) {
+      const layer = document.querySelector(`[data-layer="${layerNum}"]`);
+      layer.classList.toggle('collapsed');
+    }
+
+    function toggleAllLayers() {
+      const layers = document.querySelectorAll('.layer');
+      const text = document.getElementById('toggleText');
+
+      if (allExpanded) {
+        layers.forEach(layer => layer.classList.add('collapsed'));
+        text.textContent = 'Expandir Todo';
+      } else {
+        layers.forEach(layer => layer.classList.remove('collapsed'));
+        text.textContent = 'Colapsar Todo';
+      }
+
+      allExpanded = !allExpanded;
+    }
+
+    function showComponentDetail(elemId) {
+      let elemento = null;
+      let layerName = '';
+
+      Object.entries(bankData.capas).forEach(([key, layer]) => {
+        const found = layer.elementos.find(e => e.id === elemId);
+        if (found) {
+          elemento = found;
+          layerName = layer.nombre;
+        }
+      });
+
+      if (!elemento) return;
+
+      document.getElementById('modalTitle').textContent = elemento.nombre;
+
+      let bodyHTML = `
+        <div class="modal-section">
+          <div class="modal-section-title">📍 Capa: ${layerName}</div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">📝 Descripción</div>
+          <p style="line-height: 1.7; color: #475569;">${elemento.resumen}</p>
+        </div>
+
+        ${elemento.valor_negocio ? `
+          <div class="valor-box">
+            <strong>💡 Valor para el negocio</strong>
+            <p>${elemento.valor_negocio}</p>
+          </div>
+        ` : ''}
+
+        ${elemento.conecta_con && elemento.conecta_con.length > 0 ? `
+          <div class="modal-section">
+            <div class="modal-section-title">🔗 Conexiones transversales (${elemento.conecta_con.length})</div>
+            <div class="connection-list">
+              ${elemento.conecta_con.map(conn => `
+                <div class="connection-item">
+                  <div class="connection-header">
+                    <span class="connection-arrow">→</span>
+                    <span class="connection-name">${conn.nombre}</span>
+                    <span class="connection-capa">${conn.capa}</span>
+                  </div>
+                  <div class="connection-razon">${conn.razon}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 8px; font-size: 0.9rem; color: #64748b;">
+          💬 <strong>Navegación intuitiva:</strong> Cada conexión explica claramente por qué y cómo este elemento se relaciona con otras capas de la arquitectura.
+        </div>
+      `;
+
+      document.getElementById('modalBody').innerHTML = bodyHTML;
+      document.getElementById('modal').classList.add('active');
+    }
+
+    function closeModalBackground(event) {
+      if (event.target === document.getElementById('modal')) {
+        closeModal();
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+
+    // Tour wizard
+    function startTour() {
+      currentTourStep = 0;
+
+      // Expandir todas las capas para el tour
+      const layers = document.querySelectorAll('.layer');
+      layers.forEach(layer => layer.classList.remove('collapsed'));
+
+      document.getElementById('tourModal').classList.add('active');
+      renderTourStep();
+    }
+
+    function renderTourStep() {
+      const tour = bankData.caso_uso_tour;
+      const step = tour.pasos[currentTourStep];
+      const totalSteps = tour.pasos.length;
+
+      // Progress dots
+      const progressHTML = tour.pasos.map((_, i) => 
+        `<div class="tour-progress-dot ${i <= currentTourStep ? 'active' : ''}"></div>`
+      ).join('');
+      document.getElementById('tourProgress').innerHTML = progressHTML;
+
+      // Step info
+      document.getElementById('tourStepInfo').textContent = `Paso ${step.numero} de ${totalSteps}`;
+
+      // Title
+      document.getElementById('tourTitle').textContent = step.titulo;
+
+      // Capa badge
+      const badgeColors = {
+        'Engagement': 'background: var(--color-engagement); color: #1e293b;',
+        'IA': 'background: var(--color-ai); color: #1e293b;',
+        'Tecnología': 'background: var(--color-tech); color: white;',
+        'Operativo': 'background: var(--color-operating); color: #1e293b;'
+      };
+      document.getElementById('tourCapaBadge').innerHTML = `<span style="${badgeColors[step.capa]}">Capa ${step.numero}: ${step.capa}</span>`;
+
+      // Description
+      document.getElementById('tourDescription').textContent = step.descripcion;
+
+      // Valor
+      document.getElementById('tourValor').textContent = step.valor;
+
+      // Counter
+      document.getElementById('tourCounter').textContent = `${currentTourStep + 1} / ${totalSteps}`;
+
+      // Buttons
+      document.getElementById('tourPrev').disabled = currentTourStep === 0;
+
+      if (currentTourStep === totalSteps - 1) {
+        document.getElementById('tourNext').style.display = 'none';
+        document.getElementById('tourFinish').style.display = 'block';
+      } else {
+        document.getElementById('tourNext').style.display = 'block';
+        document.getElementById('tourFinish').style.display = 'none';
+      }
+
+      // Highlight elemento
+      document.querySelectorAll('.component-card').forEach(card => {
+        card.classList.remove('highlight');
+      });
+
+      const card = document.querySelector(`[data-id="${step.elemento}"]`);
+      if (card) {
+        card.classList.add('highlight');
+        setTimeout(() => {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+        }, 100);
+      }
+    }
+
+    function prevTourStep() {
+      if (currentTourStep > 0) {
+        currentTourStep--;
+        renderTourStep();
+      }
+    }
+
+    function nextTourStep() {
+      const totalSteps = bankData.caso_uso_tour.pasos.length;
+      if (currentTourStep < totalSteps - 1) {
+        currentTourStep++;
+        renderTourStep();
+      }
+    }
+
+    function finishTour() {
+      document.getElementById('tourModal').classList.remove('active');
+
+      document.querySelectorAll('.component-card').forEach(card => {
+        card.classList.remove('highlight');
+      });
+
+      alert('🎉 Tour completado\n\nHas visto el journey completo de una solicitud de préstamo atravesando las 4 capas de arquitectura, con explicaciones claras de valor y conexiones entre componentes.');
+    }
+
+    // Cerrar tour con Escape
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+        document.getElementById('tourModal').classList.remove('active');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
